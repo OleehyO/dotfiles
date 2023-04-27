@@ -3,5 +3,6 @@ fd
 ripgrep
 tldr
 tmux
+tpm
 shellcheck
 
