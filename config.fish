@@ -1,3 +1,4 @@
+# ~/.config/fish/config.fish
 set fish_greeting ""
 
 

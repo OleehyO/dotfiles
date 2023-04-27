@@ -1,3 +1,5 @@
+" ~/.vimrc
+
 set nocompatible " not vi compatible
 
 "------------------
