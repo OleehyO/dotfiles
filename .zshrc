@@ -1,1 +1,3 @@
-/Users/Leehy/.zshrc
+bindkey -v
+fish
+PS1="> "

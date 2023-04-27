@@ -1,0 +1,644 @@
+#---------------------------------------------------#
+## 配置文件需要放置在 $HOME/.config/clash/config.yml
+## 如果您不知道如何操作，请参阅 SS-Rule-Snippet 的 Wiki：
+## https://github.com/Hackl0us/SS-Rule-Snippet/wiki/clash(X)
+##如有便捷模式的需求请参考（仅Clash for Windows）：https://docs.cfw.lbyczf.com/contents/7z.html
+##BoomCloud 针对该项目提供的 Clash 规则进行部分修改，并保留注解方便用户理解相关配置内容。
+##注意在 Clash for Windows 客户端里以下配置修改无效，因该客户端使用内置独立的参数替代本设置，所以如有需要则在客户端内单击"General YML"按钮手动修改其中的对应内容。
+#---------------------------------------------------#
+
+# HTTP/Socks5 端口
+mixed-port: 7890
+
+# Linux 及 macOS 的 redir 端口
+# redir-port: 7892
+
+# 允许局域网的连接（可用来共享代理）
+allow-lan: true
+
+# bind-address: "*"
+# 此功能仅在 allow-lan 设置为 true 时生效，支持三种参数：
+# "*"                           绑定所有的 IP 地址
+# 192.168.122.11                绑定一个的 IPv4 地址
+# "[aaaa::a8aa:ff:fe09:57d8]"   绑定一个 IPv6 地址
+
+# 规则模式：Rule（规则） / Global（全局代理）/ Direct（全局直连）
+# (默认为 Rule 模式)
+mode: Rule
+
+# 设置日志等级 (默认为 info)
+# 5 个级别：silent / info / warning / error / debug。
+#silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出。
+#级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
+
+log-level: info
+
+# RESTful API for Clash
+external-controller: 127.0.0.1:9090
+
+# 实验性功能
+experimental:
+  ignore-resolve-fail: true # 忽略 DNS 解析失败，默认值为 true
+
+# # 实验性功能 hosts, 支持通配符 (例如 *.clash.dev 甚至 *.foo.*.example.com)
+# # 静态的域名 比 通配域名 具有更高的优先级 (foo.example.com 优先于 *.example.com)
+# # 注意: hosts 在 fake-ip 模式下不生效
+# hosts:
+#   '*.Clash.dev': 127.0.0.1
+#   'alpha.Clash.dev': '::1'
+
+
+dns:
+    enable: true
+    ipv6: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['tls://1.0.0.1:853', 'https://cloudflare-dns.com/dns-query', 'https://dns.google/dns-query']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+
+# 1. Clash DNS 请求逻辑：
+#   (1) 当访问一个域名时， nameserver 与 fallback 列表内的所有服务器并发请求，得到域名对应的 IP 地址。
+#   (2) Clash 将选取 nameserver 列表内，解析最快的结果。
+#   (3) 若解析结果中，IP 地址属于 国外，那么 Clash 将选择 fallback 列表内，解析最快的结果。
+#
+#   因此，我在 nameserver 和 fallback 内都放置了无污染、解析速度较快的国内 DNS 服务器，以达到最快的解析速度。
+#   但是 fallback 列表内服务器会用在解析境外网站，为了结果绝对无污染，我仅保留了支持 DoT/DoH 的两个服务器。
+# 
+# 2. Clash DNS 配置注意事项：
+#   (1) 如果您为了确保 DNS 解析结果无污染，请仅保留列表内以 tls:// 或 https:// 开头的 DNS 服务器，但是通常对于国内域名没有必要。
+#   (2) 如果您不在乎可能解析到污染的结果，更加追求速度。请将 nameserver 列表的服务器插入至 fallback 列表内，并移除重复项。
+# 
+# 3. 关于 DNS over HTTPS (DoH) 和 DNS over TLS (DoT) 的选择：
+#   对于两项技术双方各执一词，而且会无休止的争论，各有利弊。各位请根据具体需求自行选择，但是配置文件内默认启用 DoT，因为目前国内没有封锁或管制。
+#   DoH: 以 https:// 开头的 DNS 服务器。拥有更好的伪装性，且几乎不可能被运营商或网络管理封锁，但查询效率和安全性可能略低。
+#   DoT: 以 tls:// 开头的 DNS 服务器。拥有更高的安全性和查询效率，但端口有可能被管制或封锁。
+#   若要了解更多关于 DoH/DoT 相关技术，请自行查阅规范文档。
+
+# fallback-filter:
+    #   geoip: true # 默认
+    #   ipcidr: # 在这个网段内的 IP 地址会被考虑为被污染的 IP
+    #     - 240.0.0.0/4
+
+proxies:
+
+- { name: "香港IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 650, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 651, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 03", type: ss, server: video.tiktokuu.xyz, port: 652, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 04", type: ss, server: video.tiktokuu.xyz, port: 653, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 05", type: ss, server: video.tiktokuu.xyz, port: 654, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 06", type: ss, server: video.tiktokuu.xyz, port: 655, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 07", type: ss, server: video.tiktokuu.xyz, port: 656, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 08", type: ss, server: video.tiktokuu.xyz, port: 657, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 09", type: ss, server: video.tiktokuu.xyz, port: 658, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 10", type: ss, server: video.tiktokuu.xyz, port: 659, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 11", type: ss, server: video.tiktokuu.xyz, port: 660, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 12", type: ss, server: video.tiktokuu.xyz, port: 661, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 13", type: ss, server: video.tiktokuu.xyz, port: 662, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 14", type: ss, server: video.tiktokuu.xyz, port: 663, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "香港IPLC 15", type: ss, server: video.tiktokuu.xyz, port: 664, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 671, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 672, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 03", type: ss, server: video.tiktokuu.xyz, port: 673, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 04", type: ss, server: video.tiktokuu.xyz, port: 674, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 05", type: ss, server: video.tiktokuu.xyz, port: 675, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 06", type: ss, server: video.tiktokuu.xyz, port: 676, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 07", type: ss, server: video.tiktokuu.xyz, port: 677, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 08", type: ss, server: video.tiktokuu.xyz, port: 678, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 09", type: ss, server: video.tiktokuu.xyz, port: 679, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 10", type: ss, server: video.tiktokuu.xyz, port: 680, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 11", type: ss, server: video.tiktokuu.xyz, port: 681, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "日本IPLC 12", type: ss, server: video.tiktokuu.xyz, port: 682, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 691, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 692, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 03", type: ss, server: video.tiktokuu.xyz, port: 693, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 04", type: ss, server: video.tiktokuu.xyz, port: 694, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 05", type: ss, server: video.tiktokuu.xyz, port: 695, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 06", type: ss, server: video.tiktokuu.xyz, port: 696, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 07", type: ss, server: video.tiktokuu.xyz, port: 697, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 08", type: ss, server: video.tiktokuu.xyz, port: 698, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 09", type: ss, server: video.tiktokuu.xyz, port: 699, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 10", type: ss, server: video.tiktokuu.xyz, port: 700, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 11", type: ss, server: video.tiktokuu.xyz, port: 701, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "美国IPLC 12", type: ss, server: video.tiktokuu.xyz, port: 702, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 711, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 712, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 03", type: ss, server: video.tiktokuu.xyz, port: 713, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 04", type: ss, server: video.tiktokuu.xyz, port: 714, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 05", type: ss, server: video.tiktokuu.xyz, port: 715, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "台湾IPLC 06", type: ss, server: video.tiktokuu.xyz, port: 716, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "韩国IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 721, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "韩国IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 722, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 731, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 732, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 03", type: ss, server: video.tiktokuu.xyz, port: 733, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 04", type: ss, server: video.tiktokuu.xyz, port: 734, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 05", type: ss, server: video.tiktokuu.xyz, port: 735, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "新加坡IPLC 06", type: ss, server: video.tiktokuu.xyz, port: 736, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "俄罗斯IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 744, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "意大利IPLC 01", type: ss, server: video.tiktokuu.xyz, port: 745, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+- { name: "俄罗斯IPLC 02", type: ss, server: video.tiktokuu.xyz, port: 746, cipher: rc4-md5, password: BoomCloud2020, plugin: obfs, plugin-opts: {  mode: http,  host: 5835-7Ki827afxB.download.microsoft.com}, udp: true }
+
+
+proxy-groups:
+  # select 用来允许用户动选择 代理服务器 或 服务器组
+  # 您也可以使用 RESTful API 去切换服务器，这种方式推荐在 GUI 中使用
+  - { name: "BoomCloud", type: select, proxies: ["自动选择","故障转移","香港IPLC 01","香港IPLC 02","香港IPLC 03","香港IPLC 04","香港IPLC 05","香港IPLC 06","香港IPLC 07","香港IPLC 08","香港IPLC 09","香港IPLC 10","香港IPLC 11","香港IPLC 12","香港IPLC 13","香港IPLC 14","香港IPLC 15","日本IPLC 01","日本IPLC 02","日本IPLC 03","日本IPLC 04","日本IPLC 05","日本IPLC 06","日本IPLC 07","日本IPLC 08","日本IPLC 09","日本IPLC 10","日本IPLC 11","日本IPLC 12","美国IPLC 01","美国IPLC 02","美国IPLC 03","美国IPLC 04","美国IPLC 05","美国IPLC 06","美国IPLC 07","美国IPLC 08","美国IPLC 09","美国IPLC 10","美国IPLC 11","美国IPLC 12","台湾IPLC 01","台湾IPLC 02","台湾IPLC 03","台湾IPLC 04","台湾IPLC 05","台湾IPLC 06","韩国IPLC 01","韩国IPLC 02","新加坡IPLC 01","新加坡IPLC 02","新加坡IPLC 03","新加坡IPLC 04","新加坡IPLC 05","新加坡IPLC 06","俄罗斯IPLC 01","意大利IPLC 01","俄罗斯IPLC 02"] }
+
+  # url-test 可以自动选择与指定 URL 测速后，延迟最短的服务器
+  - { name: "自动选择", type: url-test, proxies: ["香港IPLC 01","香港IPLC 02","香港IPLC 03","香港IPLC 04","香港IPLC 05","香港IPLC 06","香港IPLC 07","香港IPLC 08","香港IPLC 09","香港IPLC 10","香港IPLC 11","香港IPLC 12","香港IPLC 13","香港IPLC 14","香港IPLC 15","日本IPLC 01","日本IPLC 02","日本IPLC 03","日本IPLC 04","日本IPLC 05","日本IPLC 06","日本IPLC 07","日本IPLC 08","日本IPLC 09","日本IPLC 10","日本IPLC 11","日本IPLC 12","美国IPLC 01","美国IPLC 02","美国IPLC 03","美国IPLC 04","美国IPLC 05","美国IPLC 06","美国IPLC 07","美国IPLC 08","美国IPLC 09","美国IPLC 10","美国IPLC 11","美国IPLC 12","台湾IPLC 01","台湾IPLC 02","台湾IPLC 03","台湾IPLC 04","台湾IPLC 05","台湾IPLC 06","韩国IPLC 01","韩国IPLC 02","新加坡IPLC 01","新加坡IPLC 02","新加坡IPLC 03","新加坡IPLC 04","新加坡IPLC 05","新加坡IPLC 06","俄罗斯IPLC 01","意大利IPLC 01","俄罗斯IPLC 02"], url: "http://www.gstatic.com/generate_204", interval: 86400 }
+
+  # fallback 可以尽量按照用户书写的服务器顺序，在确保服务器可用的情况下，自动选择服务器
+  - { name: "故障转移", type: fallback, proxies: ["香港IPLC 01","香港IPLC 02","香港IPLC 03","香港IPLC 04","香港IPLC 05","香港IPLC 06","香港IPLC 07","香港IPLC 08","香港IPLC 09","香港IPLC 10","香港IPLC 11","香港IPLC 12","香港IPLC 13","香港IPLC 14","香港IPLC 15","日本IPLC 01","日本IPLC 02","日本IPLC 03","日本IPLC 04","日本IPLC 05","日本IPLC 06","日本IPLC 07","日本IPLC 08","日本IPLC 09","日本IPLC 10","日本IPLC 11","日本IPLC 12","美国IPLC 01","美国IPLC 02","美国IPLC 03","美国IPLC 04","美国IPLC 05","美国IPLC 06","美国IPLC 07","美国IPLC 08","美国IPLC 09","美国IPLC 10","美国IPLC 11","美国IPLC 12","台湾IPLC 01","台湾IPLC 02","台湾IPLC 03","台湾IPLC 04","台湾IPLC 05","台湾IPLC 06","韩国IPLC 01","韩国IPLC 02","新加坡IPLC 01","新加坡IPLC 02","新加坡IPLC 03","新加坡IPLC 04","新加坡IPLC 05","新加坡IPLC 06","俄罗斯IPLC 01","意大利IPLC 01","俄罗斯IPLC 02"], url: "http://www.gstatic.com/generate_204", interval: 7200 }
+
+  # load-balance 可以使相同 eTLD 请求在同一条代理线路上
+  #- { name: "load-balance", type: load-balance, proxies: ["香港IPLC 01","香港IPLC 02","香港IPLC 03","香港IPLC 04","香港IPLC 05","香港IPLC 06","香港IPLC 07","香港IPLC 08","香港IPLC 09","香港IPLC 10","香港IPLC 11","香港IPLC 12","香港IPLC 13","香港IPLC 14","香港IPLC 15","日本IPLC 01","日本IPLC 02","日本IPLC 03","日本IPLC 04","日本IPLC 05","日本IPLC 06","日本IPLC 07","日本IPLC 08","日本IPLC 09","日本IPLC 10","日本IPLC 11","日本IPLC 12","美国IPLC 01","美国IPLC 02","美国IPLC 03","美国IPLC 04","美国IPLC 05","美国IPLC 06","美国IPLC 07","美国IPLC 08","美国IPLC 09","美国IPLC 10","美国IPLC 11","美国IPLC 12","台湾IPLC 01","台湾IPLC 02","台湾IPLC 03","台湾IPLC 04","台湾IPLC 05","台湾IPLC 06","韩国IPLC 01","韩国IPLC 02","新加坡IPLC 01","新加坡IPLC 02","新加坡IPLC 03","新加坡IPLC 04","新加坡IPLC 05","新加坡IPLC 06","俄罗斯IPLC 01","意大利IPLC 01","俄罗斯IPLC 02"] }
+
+rules:
+  # Apple
+  - DOMAIN-SUFFIX,apps.apple.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,blobstore.apple.com,DIRECT
+  - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,me.com,DIRECT
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,akadns.net,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  #- DOMAIN,e.crashlytics.com,REJECT //注释此选项有助于大多数App开发者分析崩溃信息；如果您拒绝一切崩溃数据统计、搜集，请取消 # 注释。
+
+
+  # 自定义规则
+  ## 您可以在此处插入您补充的自定义规则
+
+  # 国内网站
+  - DOMAIN-SUFFIX,services.googleapis.cn,BoomCloud
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - DOMAIN-KEYWORD,-cn,DIRECT
+
+  - DOMAIN-SUFFIX,126.com,DIRECT
+  - DOMAIN-SUFFIX,126.net,DIRECT
+  - DOMAIN-SUFFIX,127.net,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,360buyimg.com,DIRECT
+  - DOMAIN-SUFFIX,36kr.com,DIRECT
+  - DOMAIN-SUFFIX,acfun.tv,DIRECT
+  - DOMAIN-SUFFIX,air-matters.com,DIRECT
+  - DOMAIN-SUFFIX,aixifan.com,DIRECT
+  - DOMAIN-SUFFIX,akamaized.net,DIRECT
+  - DOMAIN-KEYWORD,alicdn,DIRECT
+  - DOMAIN-KEYWORD,alipay,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-SUFFIX,amap.com,DIRECT
+  - DOMAIN-SUFFIX,autonavi.com,DIRECT
+  - DOMAIN-KEYWORD,baidu,DIRECT
+  - DOMAIN-SUFFIX,bdimg.com,DIRECT
+  - DOMAIN-SUFFIX,bdstatic.com,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,caiyunapp.com,DIRECT
+  - DOMAIN-SUFFIX,clouddn.com,DIRECT
+  - DOMAIN-SUFFIX,cnbeta.com,DIRECT
+  - DOMAIN-SUFFIX,cnbetacdn.com,DIRECT
+  - DOMAIN-SUFFIX,cootekservice.com,DIRECT
+  - DOMAIN-SUFFIX,csdn.net,DIRECT
+  - DOMAIN-SUFFIX,ctrip.com,DIRECT
+  - DOMAIN-SUFFIX,dgtle.com,DIRECT
+  - DOMAIN-SUFFIX,dianping.com,DIRECT
+  - DOMAIN-SUFFIX,douban.com,DIRECT
+  - DOMAIN-SUFFIX,doubanio.com,DIRECT
+  - DOMAIN-SUFFIX,duokan.com,DIRECT
+  - DOMAIN-SUFFIX,easou.com,DIRECT
+  - DOMAIN-SUFFIX,ele.me,DIRECT
+  - DOMAIN-SUFFIX,feng.com,DIRECT
+  - DOMAIN-SUFFIX,fir.im,DIRECT
+  - DOMAIN-SUFFIX,frdic.com,DIRECT
+  - DOMAIN-SUFFIX,g-cores.com,DIRECT
+  - DOMAIN-SUFFIX,godic.net,DIRECT
+  - DOMAIN-SUFFIX,gtimg.com,DIRECT
+  - DOMAIN,cdn.hockeyapp.net,DIRECT
+  - DOMAIN-SUFFIX,hongxiu.com,DIRECT
+  - DOMAIN-SUFFIX,hxcdn.net,DIRECT
+  - DOMAIN-SUFFIX,iciba.com,DIRECT
+  - DOMAIN-SUFFIX,ifeng.com,DIRECT
+  - DOMAIN-SUFFIX,ifengimg.com,DIRECT
+  - DOMAIN-SUFFIX,ipip.net,DIRECT
+  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,jianshu.com,DIRECT
+  - DOMAIN-SUFFIX,knewone.com,DIRECT
+  - DOMAIN-SUFFIX,le.com,DIRECT
+  - DOMAIN-SUFFIX,lecloud.com,DIRECT
+  - DOMAIN-SUFFIX,lemicp.com,DIRECT
+  - DOMAIN-SUFFIX,licdn.com,BoomCloud
+  - DOMAIN-SUFFIX,linkedin.com,BoomCloud
+  - DOMAIN-SUFFIX,luoo.net,DIRECT
+  - DOMAIN-SUFFIX,meituan.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.net,DIRECT
+  - DOMAIN-SUFFIX,mi.com,DIRECT
+  - DOMAIN-SUFFIX,miaopai.com,DIRECT
+  - DOMAIN-SUFFIX,microsoft.com,DIRECT
+  - DOMAIN-SUFFIX,microsoftonline.com,DIRECT
+  - DOMAIN-SUFFIX,miui.com,DIRECT
+  - DOMAIN-SUFFIX,miwifi.com,DIRECT
+  - DOMAIN-SUFFIX,mob.com,DIRECT
+  - DOMAIN-SUFFIX,netease.com,DIRECT
+  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,office365.com,DIRECT
+  - DOMAIN-KEYWORD,officecdn,DIRECT
+  - DOMAIN-SUFFIX,oschina.net,DIRECT
+  - DOMAIN-SUFFIX,ppsimg.com,DIRECT
+  - DOMAIN-SUFFIX,pstatp.com,DIRECT
+  - DOMAIN-SUFFIX,qcloud.com,DIRECT
+  - DOMAIN-SUFFIX,qdaily.com,DIRECT
+  - DOMAIN-SUFFIX,qdmm.com,DIRECT
+  - DOMAIN-SUFFIX,qhimg.com,DIRECT
+  - DOMAIN-SUFFIX,qhres.com,DIRECT
+  - DOMAIN-SUFFIX,qidian.com,DIRECT
+  - DOMAIN-SUFFIX,qihucdn.com,DIRECT
+  - DOMAIN-SUFFIX,qiniu.com,DIRECT
+  - DOMAIN-SUFFIX,qiniucdn.com,DIRECT
+  - DOMAIN-SUFFIX,qiyipic.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,qqurl.com,DIRECT
+  - DOMAIN-SUFFIX,rarbg.to,DIRECT
+  - DOMAIN-SUFFIX,ruguoapp.com,DIRECT
+  - DOMAIN-SUFFIX,segmentfault.com,DIRECT
+  - DOMAIN-SUFFIX,sinaapp.com,DIRECT
+  - DOMAIN-SUFFIX,smzdm.com,DIRECT
+  - DOMAIN-SUFFIX,snapdrop.net,DIRECT
+  - DOMAIN-SUFFIX,sogou.com,DIRECT
+  - DOMAIN-SUFFIX,sogoucdn.com,DIRECT
+  - DOMAIN-SUFFIX,sohu.com,DIRECT
+  - DOMAIN-SUFFIX,soku.com,DIRECT
+  - DOMAIN-SUFFIX,speedtest.net,DIRECT
+  - DOMAIN-SUFFIX,sspai.com,DIRECT
+  - DOMAIN-SUFFIX,suning.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,tencent.com,DIRECT
+  - DOMAIN-SUFFIX,tenpay.com,DIRECT
+  - DOMAIN-SUFFIX,tianyancha.com,DIRECT
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,tudou.com,DIRECT
+  - DOMAIN-SUFFIX,umetrip.com,DIRECT
+  - DOMAIN-SUFFIX,upaiyun.com,DIRECT
+  - DOMAIN-SUFFIX,upyun.com,DIRECT
+  - DOMAIN-SUFFIX,veryzhun.com,DIRECT
+  - DOMAIN-SUFFIX,weather.com,DIRECT
+  - DOMAIN-SUFFIX,weibo.com,DIRECT
+  - DOMAIN-SUFFIX,xiami.com,DIRECT
+  - DOMAIN-SUFFIX,xiami.net,DIRECT
+  - DOMAIN-SUFFIX,xiaomicp.com,DIRECT
+  - DOMAIN-SUFFIX,ximalaya.com,DIRECT
+  - DOMAIN-SUFFIX,xmcdn.com,DIRECT
+  - DOMAIN-SUFFIX,xunlei.com,DIRECT
+  - DOMAIN-SUFFIX,yhd.com,DIRECT
+  - DOMAIN-SUFFIX,yihaodianimg.com,DIRECT
+  - DOMAIN-SUFFIX,yinxiang.com,DIRECT
+  - DOMAIN-SUFFIX,ykimg.com,DIRECT
+  - DOMAIN-SUFFIX,youdao.com,DIRECT
+  - DOMAIN-SUFFIX,youku.com,DIRECT
+  - DOMAIN-SUFFIX,zealer.com,DIRECT
+  - DOMAIN-SUFFIX,zhihu.com,DIRECT
+  - DOMAIN-SUFFIX,zhimg.com,DIRECT
+  - DOMAIN-SUFFIX,zimuzu.tv,DIRECT
+  - DOMAIN-SUFFIX,zoho.com,DIRECT
+
+  # 抗 DNS 污染
+  - DOMAIN-KEYWORD,amazon,BoomCloud
+  - DOMAIN-KEYWORD,google,BoomCloud
+  - DOMAIN-KEYWORD,gmail,BoomCloud
+  - DOMAIN-KEYWORD,youtube,BoomCloud
+  - DOMAIN-KEYWORD,facebook,BoomCloud
+  - DOMAIN-SUFFIX,fb.me,BoomCloud
+  - DOMAIN-SUFFIX,fbcdn.net,BoomCloud
+  - DOMAIN-KEYWORD,twitter,BoomCloud
+  - DOMAIN-KEYWORD,instagram,BoomCloud
+  - DOMAIN-KEYWORD,dropbox,BoomCloud
+  - DOMAIN-SUFFIX,twimg.com,BoomCloud
+  - DOMAIN-KEYWORD,blogspot,BoomCloud
+  - DOMAIN-SUFFIX,youtu.be,BoomCloud
+  - DOMAIN-KEYWORD,whatsapp,BoomCloud
+
+  # 常见广告域名屏蔽
+  - DOMAIN-KEYWORD,admarvel,REJECT
+  - DOMAIN-KEYWORD,admaster,REJECT
+  - DOMAIN-KEYWORD,adsage,REJECT
+  - DOMAIN-KEYWORD,adsmogo,REJECT
+  - DOMAIN-KEYWORD,adsrvmedia,REJECT
+  - DOMAIN-KEYWORD,adwords,REJECT
+  - DOMAIN-KEYWORD,adservice,REJECT
+  - DOMAIN-KEYWORD,domob,REJECT
+  - DOMAIN-KEYWORD,duomeng,REJECT
+  - DOMAIN-KEYWORD,dwtrack,REJECT
+  - DOMAIN-KEYWORD,guanggao,REJECT
+  - DOMAIN-KEYWORD,lianmeng,REJECT
+  - DOMAIN-KEYWORD,omgmta,REJECT
+  - DOMAIN-KEYWORD,openx,REJECT
+  - DOMAIN-KEYWORD,partnerad,REJECT
+  - DOMAIN-KEYWORD,pingfore,REJECT
+  - DOMAIN-KEYWORD,supersonicads,REJECT
+  - DOMAIN-KEYWORD,tracking,REJECT
+  - DOMAIN-KEYWORD,uedas,REJECT
+  - DOMAIN-KEYWORD,umeng,REJECT
+  - DOMAIN-KEYWORD,usage,REJECT
+  - DOMAIN-KEYWORD,wlmonitor,REJECT
+  - DOMAIN-KEYWORD,zjtoolbar,REJECT
+
+  # 国外网站
+  - DOMAIN-SUFFIX,9to5mac.com,BoomCloud
+  - DOMAIN-SUFFIX,abpchina.org,BoomCloud
+  - DOMAIN-SUFFIX,adblockplus.org,BoomCloud
+  - DOMAIN-SUFFIX,adobe.com,BoomCloud
+  - DOMAIN-SUFFIX,alfredapp.com,BoomCloud
+  - DOMAIN-SUFFIX,amplitude.com,BoomCloud
+  - DOMAIN-SUFFIX,ampproject.org,BoomCloud
+  - DOMAIN-SUFFIX,android.com,BoomCloud
+  - DOMAIN-SUFFIX,angularjs.org,BoomCloud
+  - DOMAIN-SUFFIX,aolcdn.com,BoomCloud
+  - DOMAIN-SUFFIX,apkpure.com,BoomCloud
+  - DOMAIN-SUFFIX,appledaily.com,BoomCloud
+  - DOMAIN-SUFFIX,appshopper.com,BoomCloud
+  - DOMAIN-SUFFIX,appspot.com,BoomCloud
+  - DOMAIN-SUFFIX,arcgis.com,BoomCloud
+  - DOMAIN-SUFFIX,archive.org,BoomCloud
+  - DOMAIN-SUFFIX,armorgames.com,BoomCloud
+  - DOMAIN-SUFFIX,aspnetcdn.com,BoomCloud
+  - DOMAIN-SUFFIX,att.com,BoomCloud
+  - DOMAIN-SUFFIX,awsstatic.com,BoomCloud
+  - DOMAIN-SUFFIX,azureedge.net,BoomCloud
+  - DOMAIN-SUFFIX,azurewebsites.net,BoomCloud
+  - DOMAIN-SUFFIX,bing.com,BoomCloud
+  - DOMAIN-SUFFIX,bintray.com,BoomCloud
+  - DOMAIN-SUFFIX,bit.com,BoomCloud
+  - DOMAIN-SUFFIX,bit.ly,BoomCloud
+  - DOMAIN-SUFFIX,bitbucket.org,BoomCloud
+  - DOMAIN-SUFFIX,bjango.com,BoomCloud
+  - DOMAIN-SUFFIX,bkrtx.com,BoomCloud
+  - DOMAIN-SUFFIX,blog.com,BoomCloud
+  - DOMAIN-SUFFIX,blogcdn.com,BoomCloud
+  - DOMAIN-SUFFIX,blogger.com,BoomCloud
+  - DOMAIN-SUFFIX,blogsmithmedia.com,BoomCloud
+  - DOMAIN-SUFFIX,blogspot.com,BoomCloud
+  - DOMAIN-SUFFIX,blogspot.hk,BoomCloud
+  - DOMAIN-SUFFIX,bloomberg.com,BoomCloud
+  - DOMAIN-SUFFIX,box.com,BoomCloud
+  - DOMAIN-SUFFIX,box.net,BoomCloud
+  - DOMAIN-SUFFIX,cachefly.net,BoomCloud
+  - DOMAIN-SUFFIX,chromium.org,BoomCloud
+  - DOMAIN-SUFFIX,cl.ly,BoomCloud
+  - DOMAIN-SUFFIX,cloudflare.com,BoomCloud
+  - DOMAIN-SUFFIX,cloudfront.net,BoomCloud
+  - DOMAIN-SUFFIX,cloudmagic.com,BoomCloud
+  - DOMAIN-SUFFIX,cmail19.com,BoomCloud
+  - DOMAIN-SUFFIX,cnet.com,BoomCloud
+  - DOMAIN-SUFFIX,cocoapods.org,BoomCloud
+  - DOMAIN-SUFFIX,comodoca.com,BoomCloud
+  - DOMAIN-SUFFIX,crashlytics.com,BoomCloud
+  - DOMAIN-SUFFIX,culturedcode.com,BoomCloud
+  - DOMAIN-SUFFIX,d.pr,BoomCloud
+  - DOMAIN-SUFFIX,danilo.to,BoomCloud
+  - DOMAIN-SUFFIX,dayone.me,BoomCloud
+  - DOMAIN-SUFFIX,db.tt,BoomCloud
+  - DOMAIN-SUFFIX,deskconnect.com,BoomCloud
+  - DOMAIN-SUFFIX,disq.us,BoomCloud
+  - DOMAIN-SUFFIX,disqus.com,BoomCloud
+  - DOMAIN-SUFFIX,disquscdn.com,BoomCloud
+  - DOMAIN-SUFFIX,dnsimple.com,BoomCloud
+  - DOMAIN-SUFFIX,docker.com,BoomCloud
+  - DOMAIN-SUFFIX,dribbble.com,BoomCloud
+  - DOMAIN-SUFFIX,droplr.com,BoomCloud
+  - DOMAIN-SUFFIX,duckduckgo.com,BoomCloud
+  - DOMAIN-SUFFIX,dueapp.com,BoomCloud
+  - DOMAIN-SUFFIX,dytt8.net,BoomCloud
+  - DOMAIN-SUFFIX,edgecastcdn.net,BoomCloud
+  - DOMAIN-SUFFIX,edgekey.net,BoomCloud
+  - DOMAIN-SUFFIX,edgesuite.net,BoomCloud
+  - DOMAIN-SUFFIX,engadget.com,BoomCloud
+  - DOMAIN-SUFFIX,entrust.net,BoomCloud
+  - DOMAIN-SUFFIX,eurekavpt.com,BoomCloud
+  - DOMAIN-SUFFIX,evernote.com,BoomCloud
+  - DOMAIN-SUFFIX,fabric.io,BoomCloud
+  - DOMAIN-SUFFIX,fast.com,BoomCloud
+  - DOMAIN-SUFFIX,fastly.net,BoomCloud
+  - DOMAIN-SUFFIX,fc2.com,BoomCloud
+  - DOMAIN-SUFFIX,feedburner.com,BoomCloud
+  - DOMAIN-SUFFIX,feedly.com,BoomCloud
+  - DOMAIN-SUFFIX,feedsportal.com,BoomCloud
+  - DOMAIN-SUFFIX,fiftythree.com,BoomCloud
+  - DOMAIN-SUFFIX,firebaseio.com,BoomCloud
+  - DOMAIN-SUFFIX,flexibits.com,BoomCloud
+  - DOMAIN-SUFFIX,flickr.com,BoomCloud
+  - DOMAIN-SUFFIX,flipboard.com,BoomCloud
+  - DOMAIN-SUFFIX,g.co,BoomCloud
+  - DOMAIN-SUFFIX,gabia.net,BoomCloud
+  - DOMAIN-SUFFIX,geni.us,BoomCloud
+  - DOMAIN-SUFFIX,gfx.ms,BoomCloud
+  - DOMAIN-SUFFIX,ggpht.com,BoomCloud
+  - DOMAIN-SUFFIX,ghostnoteapp.com,BoomCloud
+  - DOMAIN-SUFFIX,git.io,BoomCloud
+  - DOMAIN-KEYWORD,github,BoomCloud
+  - DOMAIN-SUFFIX,globalsign.com,BoomCloud
+  - DOMAIN-SUFFIX,gmodules.com,BoomCloud
+  - DOMAIN-SUFFIX,godaddy.com,BoomCloud
+  - DOMAIN-SUFFIX,golang.org,BoomCloud
+  - DOMAIN-SUFFIX,gongm.in,BoomCloud
+  - DOMAIN-SUFFIX,goo.gl,BoomCloud
+  - DOMAIN-SUFFIX,goodreaders.com,BoomCloud
+  - DOMAIN-SUFFIX,goodreads.com,BoomCloud
+  - DOMAIN-SUFFIX,gravatar.com,BoomCloud
+  - DOMAIN-SUFFIX,gstatic.com,BoomCloud
+  - DOMAIN-SUFFIX,gvt0.com,BoomCloud
+  - DOMAIN-SUFFIX,hockeyapp.net,BoomCloud
+  - DOMAIN-SUFFIX,hotmail.com,BoomCloud
+  - DOMAIN-SUFFIX,icons8.com,BoomCloud
+  - DOMAIN-SUFFIX,ifixit.com,BoomCloud
+  - DOMAIN-SUFFIX,ift.tt,BoomCloud
+  - DOMAIN-SUFFIX,ifttt.com,BoomCloud
+  - DOMAIN-SUFFIX,iherb.com,BoomCloud
+  - DOMAIN-SUFFIX,imageshack.us,BoomCloud
+  - DOMAIN-SUFFIX,img.ly,BoomCloud
+  - DOMAIN-SUFFIX,imgur.com,BoomCloud
+  - DOMAIN-SUFFIX,imore.com,BoomCloud
+  - DOMAIN-SUFFIX,instapaper.com,BoomCloud
+  - DOMAIN-SUFFIX,ipn.li,BoomCloud
+  - DOMAIN-SUFFIX,is.gd,BoomCloud
+  - DOMAIN-SUFFIX,issuu.com,BoomCloud
+  - DOMAIN-SUFFIX,itgonglun.com,BoomCloud
+  - DOMAIN-SUFFIX,itun.es,BoomCloud
+  - DOMAIN-SUFFIX,ixquick.com,BoomCloud
+  - DOMAIN-SUFFIX,j.mp,BoomCloud
+  - DOMAIN-SUFFIX,js.revsci.net,BoomCloud
+  - DOMAIN-SUFFIX,jshint.com,BoomCloud
+  - DOMAIN-SUFFIX,jtvnw.net,BoomCloud
+  - DOMAIN-SUFFIX,justgetflux.com,BoomCloud
+  - DOMAIN-SUFFIX,kat.cr,BoomCloud
+  - DOMAIN-SUFFIX,klip.me,BoomCloud
+  - DOMAIN-SUFFIX,libsyn.com,BoomCloud
+  - DOMAIN-SUFFIX,linode.com,BoomCloud
+  - DOMAIN-SUFFIX,lithium.com,BoomCloud
+  - DOMAIN-SUFFIX,littlehj.com,BoomCloud
+  - DOMAIN-SUFFIX,live.com,BoomCloud
+  - DOMAIN-SUFFIX,live.net,BoomCloud
+  - DOMAIN-SUFFIX,livefilestore.com,BoomCloud
+  - DOMAIN-SUFFIX,llnwd.net,BoomCloud
+  - DOMAIN-SUFFIX,macid.co,BoomCloud
+  - DOMAIN-SUFFIX,macromedia.com,BoomCloud
+  - DOMAIN-SUFFIX,macrumors.com,BoomCloud
+  - DOMAIN-SUFFIX,mashable.com,BoomCloud
+  - DOMAIN-SUFFIX,mathjax.org,BoomCloud
+  - DOMAIN-SUFFIX,medium.com,BoomCloud
+  - DOMAIN-SUFFIX,mega.co.nz,BoomCloud
+  - DOMAIN-SUFFIX,mega.nz,BoomCloud
+  - DOMAIN-SUFFIX,megaupload.com,BoomCloud
+  - DOMAIN-SUFFIX,microsofttranslator.com,BoomCloud
+  - DOMAIN-SUFFIX,mindnode.com,BoomCloud
+  - DOMAIN-SUFFIX,mobile01.com,BoomCloud
+  - DOMAIN-SUFFIX,modmyi.com,BoomCloud
+  - DOMAIN-SUFFIX,msedge.net,BoomCloud
+  - DOMAIN-SUFFIX,myfontastic.com,BoomCloud
+  - DOMAIN-SUFFIX,name.com,BoomCloud
+  - DOMAIN-SUFFIX,nextmedia.com,BoomCloud
+  - DOMAIN-SUFFIX,nsstatic.net,BoomCloud
+  - DOMAIN-SUFFIX,nssurge.com,BoomCloud
+  - DOMAIN-SUFFIX,nyt.com,BoomCloud
+  - DOMAIN-SUFFIX,nytimes.com,BoomCloud
+  - DOMAIN-SUFFIX,omnigroup.com,BoomCloud
+  - DOMAIN-SUFFIX,onedrive.com,BoomCloud
+  - DOMAIN-SUFFIX,onenote.com,BoomCloud
+  - DOMAIN-SUFFIX,ooyala.com,BoomCloud
+  - DOMAIN-SUFFIX,openvpn.net,BoomCloud
+  - DOMAIN-SUFFIX,openwrt.org,BoomCloud
+  - DOMAIN-SUFFIX,orkut.com,BoomCloud
+  - DOMAIN-SUFFIX,osxdaily.com,BoomCloud
+  - DOMAIN-SUFFIX,outlook.com,BoomCloud
+  - DOMAIN-SUFFIX,ow.ly,BoomCloud
+  - DOMAIN-SUFFIX,paddleapi.com,BoomCloud
+  - DOMAIN-SUFFIX,parallels.com,BoomCloud
+  - DOMAIN-SUFFIX,parse.com,BoomCloud
+  - DOMAIN-SUFFIX,pdfexpert.com,BoomCloud
+  - DOMAIN-SUFFIX,periscope.tv,BoomCloud
+  - DOMAIN-SUFFIX,pinboard.in,BoomCloud
+  - DOMAIN-SUFFIX,pinterest.com,BoomCloud
+  - DOMAIN-SUFFIX,pixelmator.com,BoomCloud
+  - DOMAIN-SUFFIX,pixiv.net,BoomCloud
+  - DOMAIN-SUFFIX,playpcesor.com,BoomCloud
+  - DOMAIN-SUFFIX,playstation.com,BoomCloud
+  - DOMAIN-SUFFIX,playstation.com.hk,BoomCloud
+  - DOMAIN-SUFFIX,playstation.net,BoomCloud
+  - DOMAIN-SUFFIX,playstationnetwork.com,BoomCloud
+  - DOMAIN-SUFFIX,pushwoosh.com,BoomCloud
+  - DOMAIN-SUFFIX,rime.im,BoomCloud
+  - DOMAIN-SUFFIX,servebom.com,BoomCloud
+  - DOMAIN-SUFFIX,sfx.ms,BoomCloud
+  - DOMAIN-SUFFIX,shadowsocks.org,BoomCloud
+  - DOMAIN-SUFFIX,sharethis.com,BoomCloud
+  - DOMAIN-SUFFIX,shazam.com,BoomCloud
+  - DOMAIN-SUFFIX,skype.com,BoomCloud
+  - DOMAIN-SUFFIX,smartdnsBoomCloud.com,BoomCloud
+  - DOMAIN-SUFFIX,smartmailcloud.com,BoomCloud
+  - DOMAIN-SUFFIX,sndcdn.com,BoomCloud
+  - DOMAIN-SUFFIX,sony.com,BoomCloud
+  - DOMAIN-SUFFIX,soundcloud.com,BoomCloud
+  - DOMAIN-SUFFIX,sourceforge.net,BoomCloud
+  - DOMAIN-SUFFIX,spotify.com,BoomCloud
+  - DOMAIN-SUFFIX,squarespace.com,BoomCloud
+  - DOMAIN-SUFFIX,sstatic.net,BoomCloud
+  - DOMAIN-SUFFIX,st.luluku.pw,BoomCloud
+  - DOMAIN-SUFFIX,stackoverflow.com,BoomCloud
+  - DOMAIN-SUFFIX,startpage.com,BoomCloud
+  - DOMAIN-SUFFIX,staticflickr.com,BoomCloud
+  - DOMAIN-SUFFIX,steamcommunity.com,BoomCloud
+  - DOMAIN-SUFFIX,symauth.com,BoomCloud
+  - DOMAIN-SUFFIX,symcb.com,BoomCloud
+  - DOMAIN-SUFFIX,symcd.com,BoomCloud
+  - DOMAIN-SUFFIX,tapbots.com,BoomCloud
+  - DOMAIN-SUFFIX,tapbots.net,BoomCloud
+  - DOMAIN-SUFFIX,tdesktop.com,BoomCloud
+  - DOMAIN-SUFFIX,techcrunch.com,BoomCloud
+  - DOMAIN-SUFFIX,techsmith.com,BoomCloud
+  - DOMAIN-SUFFIX,thepiratebay.org,BoomCloud
+  - DOMAIN-SUFFIX,theverge.com,BoomCloud
+  - DOMAIN-SUFFIX,time.com,BoomCloud
+  - DOMAIN-SUFFIX,timeinc.net,BoomCloud
+  - DOMAIN-SUFFIX,tiny.cc,BoomCloud
+  - DOMAIN-SUFFIX,tinypic.com,BoomCloud
+  - DOMAIN-SUFFIX,tmblr.co,BoomCloud
+  - DOMAIN-SUFFIX,todoist.com,BoomCloud
+  - DOMAIN-SUFFIX,trello.com,BoomCloud
+  - DOMAIN-SUFFIX,trustasiassl.com,BoomCloud
+  - DOMAIN-SUFFIX,tumblr.co,BoomCloud
+  - DOMAIN-SUFFIX,tumblr.com,BoomCloud
+  - DOMAIN-SUFFIX,tweetdeck.com,BoomCloud
+  - DOMAIN-SUFFIX,tweetmarker.net,BoomCloud
+  - DOMAIN-SUFFIX,twitch.tv,BoomCloud
+  - DOMAIN-SUFFIX,txmblr.com,BoomCloud
+  - DOMAIN-SUFFIX,typekit.net,BoomCloud
+  - DOMAIN-SUFFIX,ubertags.com,BoomCloud
+  - DOMAIN-SUFFIX,ublock.org,BoomCloud
+  - DOMAIN-SUFFIX,ubnt.com,BoomCloud
+  - DOMAIN-SUFFIX,ulyssesapp.com,BoomCloud
+  - DOMAIN-SUFFIX,urchin.com,BoomCloud
+  - DOMAIN-SUFFIX,usertrust.com,BoomCloud
+  - DOMAIN-SUFFIX,v.gd,BoomCloud
+  - DOMAIN-SUFFIX,v2ex.com,BoomCloud
+  - DOMAIN-SUFFIX,vimeo.com,BoomCloud
+  - DOMAIN-SUFFIX,vimeocdn.com,BoomCloud
+  - DOMAIN-SUFFIX,vine.co,BoomCloud
+  - DOMAIN-SUFFIX,vivaldi.com,BoomCloud
+  - DOMAIN-SUFFIX,vox-cdn.com,BoomCloud
+  - DOMAIN-SUFFIX,vsco.co,BoomCloud
+  - DOMAIN-SUFFIX,vultr.com,BoomCloud
+  - DOMAIN-SUFFIX,w.org,BoomCloud
+  - DOMAIN-SUFFIX,w3schools.com,BoomCloud
+  - DOMAIN-SUFFIX,webtype.com,BoomCloud
+  - DOMAIN-SUFFIX,wikiwand.com,BoomCloud
+  - DOMAIN-SUFFIX,wikileaks.org,BoomCloud
+  - DOMAIN-SUFFIX,wikimedia.org,BoomCloud
+  - DOMAIN-SUFFIX,wikipedia.com,BoomCloud
+  - DOMAIN-SUFFIX,wikipedia.org,BoomCloud
+  - DOMAIN-SUFFIX,windows.com,BoomCloud
+  - DOMAIN-SUFFIX,windows.net,BoomCloud
+  - DOMAIN-SUFFIX,wire.com,BoomCloud
+  - DOMAIN-SUFFIX,wordpress.com,BoomCloud
+  - DOMAIN-SUFFIX,workflowy.com,BoomCloud
+  - DOMAIN-SUFFIX,wp.com,BoomCloud
+  - DOMAIN-SUFFIX,wsj.com,BoomCloud
+  - DOMAIN-SUFFIX,wsj.net,BoomCloud
+  - DOMAIN-SUFFIX,xda-developers.com,BoomCloud
+  - DOMAIN-SUFFIX,xeeno.com,BoomCloud
+  - DOMAIN-SUFFIX,xiti.com,BoomCloud
+  - DOMAIN-SUFFIX,yahoo.com,BoomCloud
+  - DOMAIN-SUFFIX,yimg.com,BoomCloud
+  - DOMAIN-SUFFIX,ying.com,BoomCloud
+  - DOMAIN-SUFFIX,yoyo.org,BoomCloud
+  - DOMAIN-SUFFIX,ytimg.com,BoomCloud
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegra.ph,BoomCloud
+  - DOMAIN-SUFFIX,telegram.org,BoomCloud
+
+  - IP-CIDR,91.108.56.0/22,BoomCloud
+  - IP-CIDR,91.108.4.0/22,BoomCloud
+  - IP-CIDR,91.108.8.0/22,BoomCloud
+  - IP-CIDR,109.239.140.0/24,BoomCloud
+  - IP-CIDR,149.154.160.0/20,BoomCloud
+  - IP-CIDR,149.154.164.0/22,BoomCloud
+
+  # LAN
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,17.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+
+  # 最终规则
+  - GEOIP,CN,DIRECT
+  - MATCH,BoomCloud

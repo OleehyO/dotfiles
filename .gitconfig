@@ -1,1 +1,15 @@
-/Users/Leehy/.gitconfig
+[user]
+	name = 三洋三洋
+	email = 56267907+SPLEEHYS@users.noreply.github.com
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	graph = log --all --graph --decorate --oneline
+
+[core]
+	excludesfile = /Users/Leehy/.gitignore_global
