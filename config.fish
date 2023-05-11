@@ -59,7 +59,7 @@ function fish_mode_prompt
   set_color normal
 end
 
-set fish_color_command 3CB371 --bold
+set fish_color_command 60BA42 --bold
 
 # Colorful manpage
 set -x LESS_TERMCAP_md (printf "\033[01;31m")  
@@ -72,7 +72,13 @@ set -x LESS_TERMCAP_us (printf "\033[01;32m")
 # autojump plugin's requirement
 [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 
-alias ls="ls --color=always"
+alias ls="exa"
+alias la="exa -a"
+alias ll="exa -lbghiS"
+alias lla="exa -labghiS"
+
 alias mv="mv -i"           # -i prompts before overwrite
+
 alias mkdir="mkdir -p"     # -p make parent dirs as needed
+
 alias df="df -h"           # -h prints human readable format

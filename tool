@@ -5,4 +5,4 @@ tldr
 tmux
 tpm
 shellcheck
-
+exa
