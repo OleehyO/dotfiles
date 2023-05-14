@@ -1,0 +1,2 @@
+# Disable env prompt.co
+changeps1: false
