@@ -87,8 +87,11 @@ alias du="du -sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/Leehy/miniconda3/bin/conda
-    eval /Users/Leehy/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+if test -f /Users/Leehy/anaconda3/bin/conda
+    eval /Users/Leehy/anaconda3/bin/conda "shell.fish" "hook" $argv | source
 end
 # <<< conda initialize <<<
 
+# To use conda in fish shell, run `conda init fish` in zsh/bash when conda 
+#+ have been installed.
+# To config conda, edit ".condatc" dotfile.
