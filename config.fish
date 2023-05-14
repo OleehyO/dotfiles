@@ -83,6 +83,8 @@ alias mkdir="mkdir -p"     # -p make parent dirs as needed
 
 alias df="df -h"           # -h prints human readable format
 
+alias du="du -sh" 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /Users/Leehy/miniconda3/bin/conda
