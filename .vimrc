@@ -65,7 +65,3 @@ set noerrorbells visualbell t_vb=
 " open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-nnoremap <Leader>s( i(<ESC>ea)<ESC>
-nnoremap <Leader>s[ i[<ESC>ea]<ESC>
-nnoremap <Leader>s{ i{<ESC>ea}<ESC>
