@@ -1,5 +1,7 @@
 # ~/.config/fish/config.fish
 set fish_greeting ""
+set -gx PATH /Applications/PyCharm.app/Contents/MacOS $PATH
+set -x TLDR_CACHE_MAX_AGE 87600
 
 
 set -g fish_prompt_pwd_dir_length 3

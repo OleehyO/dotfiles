@@ -1,2 +1,2 @@
 # Disable env prompt
-changeps1: false
+changeps1: False
