@@ -1,10 +1,17 @@
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH="/Users/Leehy/sbt/bin:$PATH"
+
 # ~/.zshrc
 bindkey -v
-fish
 PS1="> "
+# >>> start fish >>>
+fish
 
 # >>> conda initialize >>>
-!! Contents within this block are managed by 'conda init' !!
+#!! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/Leehy/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -17,3 +24,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

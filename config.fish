@@ -1,7 +1,14 @@
 # ~/.config/fish/config.fish
 set fish_greeting ""
 set -gx PATH /Applications/PyCharm.app/Contents/MacOS $PATH
-set -x TLDR_CACHE_MAX_AGE 87600
+set -gx PATH /Applications/CLion.app/Contents/MacOS $PATH
+set -gx TLDR_AUTO_UPDATE_DISABLED 1
+set -gx HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bottles
+
+# set -gx PATH /opt/homebrew/opt/scala@2.12/bin $PATH
+# set -gx PATH /Users/Leehy/sbt/bin $PATH
+# set -gx PATH /Users/Leehy/.sdkman/candidates/sbt/current/bin $PATH
+# set -gx PATH /Users/Leehy/scala-2.11.12/bin $PATH
 
 
 set -g fish_prompt_pwd_dir_length 3

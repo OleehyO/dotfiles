@@ -1,7 +1,7 @@
 # ~/.gitconfig
 [user]
 	name = 三洋三洋
-	email = 56267907+SPLEEHYS@users.noreply.github.com
+	email = 1258009915@qq.com
 [init]
 	defaultBranch = main
 [filter "lfs"]
