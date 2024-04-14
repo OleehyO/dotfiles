@@ -10,6 +10,8 @@ set -gx HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bott
 set -gx http_proxy "http://127.0.0.1:7890"
 set -gx https_proxy "http://127.0.0.1:7890"
 
+set -x CONDA_PREFIX "/Users/Leehy/anaconda3"
+
 
 # set -gx PATH /opt/homebrew/opt/scala@2.12/bin $PATH
 # set -gx PATH /Users/Leehy/sbt/bin $PATH
