@@ -10,8 +10,8 @@ set -gx HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bott
 set -gx http_proxy "http://127.0.0.1:7890"
 set -gx https_proxy "http://127.0.0.1:7890"
 
-set -x CONDA_PREFIX "/Users/Leehy/anaconda3"
-
+# 设置miniconda路径
+set -x PATH /Users/Leehy/miniconda3/bin $PATH
 
 # set -gx PATH /opt/homebrew/opt/scala@2.12/bin $PATH
 # set -gx PATH /Users/Leehy/sbt/bin $PATH
@@ -39,25 +39,6 @@ function fish_prompt
     set_color normal
 end
 
-# function fish_right_prompt
-#     set_color D3D3D3 
-#     if git rev-parse --is-inside-work-tree > /dev/null 2>&1
-# 	set_color FF8C00 --bold
-# 	printf '('
-# 
-# 	git branch | grep "^* " | sed 's/^*\ //' | awk '   
-# 							    /HEAD detached at/ {
-# 			                                        $0 = substr($0, 2, length($0) - 2);
-#                              				    }
-#                             				    1 {
-#                                  			        printf("%s", $0);
-#                              			    	    }
-#                         			        '
-# 
-# 	printf ')'
-#     	set_color normal
-#     end
-# end
 
 function fish_mode_prompt
   set_color D3D3D3 --bold 
@@ -104,8 +85,14 @@ alias du="du -sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/Leehy/anaconda3/bin/conda
-    eval /Users/Leehy/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+if test -f /Users/Leehy/miniconda3/bin/conda
+    eval /Users/Leehy/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
+        . "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/Users/Leehy/miniconda3/bin" $PATH
+    end
 end
 # <<< conda initialize <<<
 
