@@ -7,8 +7,10 @@ set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bottles
 
 # 配置clash代理，使其它应用程序也能走代理流量
-set -gx http_proxy "http://127.0.0.1:7890"
-set -gx https_proxy "http://127.0.0.1:7890"
+# set -gx http_proxy "http://127.0.0.1:7890"
+# set -gx https_proxy "http://127.0.0.1:7890"
+set -gx http_proxy "http://127.0.0.1:64991"
+set -gx https_proxy "http://127.0.0.1:64991"
 
 # 设置miniconda路径
 set -x PATH /Users/Leehy/miniconda3/bin $PATH
