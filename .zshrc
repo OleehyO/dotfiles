@@ -2,6 +2,9 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottl
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
+export ANDROID_HOME=/Users/Leehy/Library/Android/sdk
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+
 export PATH="/Users/Leehy/sbt/bin:$PATH"
 
 # ~/.zshrc
