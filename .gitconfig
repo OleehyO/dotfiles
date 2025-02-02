@@ -17,3 +17,6 @@
 	editor = vim
 [http]
 	postBuffer = 524288000
+	proxy = http://127.0.0.1:64991
+[https]
+	proxy = http://127.0.0.1:64991
