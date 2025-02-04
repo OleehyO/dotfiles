@@ -15,3 +15,5 @@
 [core]
 	excludesfile = /Users/Leehy/.gitignore_global
 	editor = vim
+[http]
+	postBuffer = 524288000
