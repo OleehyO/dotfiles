@@ -13,8 +13,6 @@ set -gx HOMEBREW_BOTTLE_DOMAIN https://mirrors.aliyun.com/homebrew/homebrew-bott
 set -gx http_proxy "http://127.0.0.1:64991"
 set -gx https_proxy "http://127.0.0.1:64991"
 
-# 设置miniconda路径
-set -x PATH /Users/Leehy/miniconda3/bin $PATH
 
 # set -gx PATH /opt/homebrew/opt/scala@2.12/bin $PATH
 # set -gx PATH /Users/Leehy/sbt/bin $PATH
@@ -86,26 +84,32 @@ alias df="df -h"           # -h prints human readable format
 
 alias du="du -sh" 
 
+# =========================  conda相关(改用uv了)  ==============================
+# 设置miniconda路径
+# set -x PATH /Users/Leehy/miniconda3/bin $PATH
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /Users/Leehy/miniconda3/bin/conda
-    eval /Users/Leehy/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-else
-    if test -f "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
-        . "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "/Users/Leehy/miniconda3/bin" $PATH
-    end
-end
+# if test -f /Users/Leehy/miniconda3/bin/conda
+#     eval /Users/Leehy/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# else
+#     if test -f "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
+#         . "/Users/Leehy/miniconda3/etc/fish/conf.d/conda.fish"
+#     else
+#         set -x PATH "/Users/Leehy/miniconda3/bin" $PATH
+#     end
+# end
 # <<< conda initialize <<<
 
 # Using tmux with conda, there will be a problem:
 #+ When open a new terminal in tmux will auto activate base virenv 
 #+ and pacakage will be system instead of base virenv scope, 
 #+ so one of the solution is deactivate current virenv and reactivate base virenv
-conda deactivate
-conda activate base
+# conda deactivate
+# conda activate base
 
 # To use conda in fish shell, run `conda init fish` in zsh/bash when conda 
 #+ have been installed.
 # To config conda, edit ".condatc" dotfile.
+# =======================================================================
+
