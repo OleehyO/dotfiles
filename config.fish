@@ -71,10 +71,10 @@ set -x LESS_TERMCAP_us (printf "\033[01;32m")
 # autojump plugin's requirement
 [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 
-alias ls="exa"
-alias la="exa -a"
-alias ll="exa -lbghiS"
-alias lla="exa -labghiS"
+alias ls="eza"
+alias la="eza -a"
+alias ll="eza -lbghiS"
+alias lla="eza -labghiS"
 
 alias mv="mv -i"           # -i prompts before overwrite
 
