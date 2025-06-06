@@ -19,8 +19,17 @@ set -gx https_proxy "http://127.0.0.1:64991"
 # set -gx PATH /Users/Leehy/.sdkman/candidates/sbt/current/bin $PATH
 # set -gx PATH /Users/Leehy/scala-2.11.12/bin $PATH
 
-
 set -g fish_prompt_pwd_dir_length 3
+
+
+# 设置 vi 模式下的光标形状
+# 可选值: block (方块), line (长条/I-beam), underline (下划线)
+set fish_cursor_default block         # Normal (default) 模式
+set fish_cursor_insert block           # Insert (插入) 模式
+set fish_cursor_visual block         # Visual (可视化) 模式
+set fish_cursor_replace_one block    # Replace-one (替换单字符) 模式
+set fish_cursor_replace block        # Replace (替换) 模式
+
 
 function fish_prompt
     set_color C71585 # --bold 
