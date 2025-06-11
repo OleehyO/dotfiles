@@ -33,7 +33,7 @@ set fish_cursor_replace block        # Replace (替换) 模式
 
 function fish_prompt
     set_color C71585 # --bold 
-    set dir_cnt $(echo "$PWD" | grep -o '/' | wc -l | sed 's/ * //')
+    set dir_cnt (echo "$PWD" | grep -o '/' | wc -l | sed 's/ * //')
     printf "["
 
     if [ $dir_cnt -ge 3 ] 
@@ -78,7 +78,11 @@ set -x LESS_TERMCAP_ue (printf "\033[0m")
 set -x LESS_TERMCAP_us (printf "\033[01;32m")
 
 # autojump plugin's requirement
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+if test -f /opt/homebrew/share/autojump/autojump.fish
+    source /opt/homebrew/share/autojump/autojump.fish
+else if test -f /usr/share/autojump/autojump.fish
+    source /usr/share/autojump/autojump.fish
+end
 
 alias ls="eza"
 alias la="eza -a"
