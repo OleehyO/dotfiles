@@ -1,0 +1,144 @@
+{
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.ipynb": "jupyter-notebook",
+        "*.pdf": "pdf.preview",
+        "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default"
+    },
+    "debug.onTaskErrors": "debugAnyway",
+    "explorer.confirmDelete": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "right"
+    },
+    "python.defaultInterpreterPath": "/Users/Leehy/anaconda3/bin/python",
+    "notebook.lineNumbers": "on",
+    "explorer.confirmDragAndDrop": false,
+    "[python]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.formatOnType": true
+    },
+    "files.associations": {
+        "*.py": "python"
+    },
+    "git.ignoreMissingGitWarning": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "code-runner.languageIdToFileExtensionMap": {
+        "bat": ".bat",
+        "powershell": ".ps1",
+        "typescript": ".ts"
+    },
+    "code-runner.saveFileBeforeRun": true,
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 16,
+    "scm.inputFontSize": 16,
+    "code-runner.runInTerminal": true,
+    "git.enableSmartCommit": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "debug.openDebug": "openOnDebugBreak",
+    "editor.tabCompletion": "off",
+    "files.defaultLanguage": "",
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "debug.terminal.clearBeforeReusing": true,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.external.windowsExec": "C:\\Program Files\\WindowsApps\\Microsoft.PowerShellPreview_7.4.1.0_x64__8wekyb3d8bbwe\\pwsh.exe",
+    "terminal.integrated.fontSize": 15,
+    "cmake.configureOnOpen": true,
+    "workbench.startupEditor": "none",
+    "editor.lineNumbers": "relative",
+    "git.openRepositoryInParentFolders": "always",
+    "terminal.integrated.inheritEnv": false,
+    "notebook.output.scrolling": false,
+    "jupyter.askForKernelRestart": false,
+    "remote.SSH.remotePlatform": {
+        "192.168.31.170": "windows",
+        "WinLaptop": "windows"
+    },
+    "editor.rulers": [
+        100
+    ],
+    "Codegeex.Privacy": true,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "variable.parameter.function.language.special.self.python",
+                    "variable.parameter.function.language.special.cls.python"
+                ],
+                "settings": {
+                    "foreground": "#936032",
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "scope": [
+                    "variable.parameter"
+                ],
+                "settings": {
+                    "foreground": "#000000"
+                }
+            }
+        ]
+    },
+    "tabnine.experimentalAutoImports": true,
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "cmake.options.statusBarVisibility": "visible",
+    "cmake.showOptionsMovedNotification": false,
+    "editor.smoothScrolling": true,
+    "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.ABC",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/opt/homebrew/bin/im-select",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/opt/homebrew/bin/im-select {im}",
+    "C_Cpp.default.cppStandard": "c++20",
+    "remote.autoForwardPortsSource": "hybrid",
+    "gitlens.proxy": {},
+    "ispc.compilerPath": "/home/lhy/ispc-v1.23.0-linux/bin/ispc",
+    "ispc.compilerTargetOS": "linux",
+    "files.autoSave": "afterDelay",
+    "cmake.debugConfig": {},
+    "vscode-office.editorTheme": "Light",
+    "Lingma.localMachineModel": true,
+    "github.copilot.advanced": {
+        "debug.overrideChatEngine": "gpt-4"
+    },
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.generator": "Unix Makefiles",
+    "cmake.preferredGenerators": [],
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "github.copilot.editor.enableAutoCompletions": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Quiet Light",
+    "hediet.vscode-drawio.resizeImages": null,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "csharp": false
+    },
+    "dotnetAcquisitionExtension.existingDotnetPath": [],
+    "dotnetAcquisitionExtension.installTimeoutValue": 6000,
+    "cursor.cpp.disabledLanguages": [
+        "cpp"
+    ],
+    "svg.preview.mode": "svg",
+    "githubPullRequests.pullBranch": "never",
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "C_Cpp.intelliSenseUpdateDelay": 500,
+    "ruff.configuration": "",
+    "ruff.lineLength": 100,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "git.autofetch": true,
+    "window.openFoldersInNewWindow": "on"
+}
