@@ -6,10 +6,9 @@
 
 # MACOS
 # 下载ITEM：https://iterm2.com/index.html
-# item中导入ItemSetting.json：Item -> settings -> profiles -> other actions -> import json files -> 选中这个配置 -> other actions -> set as default
+# item中导入MacItemProfile.json：Item -> settings -> profiles -> other actions -> import json files -> 选中这个配置 -> other actions -> set as default
 # ITEM的其他主题可以参考：https://github.com/mbadolato/iTerm2-Color-Schemes
 
-# TODO: item2 远端vim yank到本地
 
 # -- PATH 相关 ------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
@@ -26,6 +25,8 @@ alias vi="$VISUAL"
 DOTFILE="${HOME}/dotfile"
 source "${DOTFILE}/.config/zsh/functions.zsh"
 
+
+# -- moonshot related --------------------------------------
 eval $(curl -fsSL proxy.msh.work:3128/env --noproxy proxy.msh.work)
 
 
