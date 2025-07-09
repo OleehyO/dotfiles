@@ -1,4 +1,7 @@
-# Disable env prompt
+# 禁用conda的env prompt
 changeps1: false
 channels:
   - defaults
+
+# 禁用conda自动激活base
+auto_activate_base: false
