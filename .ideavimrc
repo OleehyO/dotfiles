@@ -1,6 +1,0 @@
-set relativenumber
-set number
-set keep-english-in-normal
-set keep-english-in-normal-and-restore-in-insert
-set nokeep-english-in-normal-and-restore-in-inser
-set surround
