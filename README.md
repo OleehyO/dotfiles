@@ -9,7 +9,7 @@
     ```
 3.  安装依赖库（要先确保设置了网络代理，否则可能会安装失败）
 
-    ```zsh
+    ```bash
     zsh  # 进入zsh shell
 
     source ~/dotfiles/.config/zsh/install/install_all.zsh
