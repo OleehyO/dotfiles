@@ -20,6 +20,6 @@ case $os in
         ;;
     *)
         echo "tzdata installation is only supported for Ubuntu"
-        return 1
+        return 0
         ;;
 esac 

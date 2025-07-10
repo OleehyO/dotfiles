@@ -20,7 +20,7 @@ fi
 
 # --- fzf-tab Plugin Installation ---
 # This part runs regardless of whether Oh My Zsh was just installed or already existed.
-FZF_TAB_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab"
+FZF_TAB_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/fzf-tab"
 
 if [[ ! -d "$FZF_TAB_PATH" ]]; then
     echo "Installing fzf-tab plugin..."
@@ -31,7 +31,7 @@ else
 fi
 
 # --- zsh-vi-mode Plugin Installation ---
-ZSH_VI_MODE_PATH="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
+ZSH_VI_MODE_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 
 if [[ ! -d "$ZSH_VI_MODE_PATH" ]]; then
     echo "Installing zsh-vi-mode plugin..."
@@ -39,4 +39,26 @@ if [[ ! -d "$ZSH_VI_MODE_PATH" ]]; then
     echo "zsh-vi-mode plugin installed successfully! Please add 'zsh-vi-mode' to the plugins list in your ~/.zshrc"
 else
     echo "zsh-vi-mode plugin is already installed"
+fi
+
+# --- zsh-autosuggestions Plugin Installation ---
+ZSH_AUTOSUGGESTIONS_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
+if [[ ! -d "$ZSH_AUTOSUGGESTIONS_PATH" ]]; then
+    echo "Installing zsh-autosuggestions plugin..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_AUTOSUGGESTIONS_PATH"
+    echo "zsh-autosuggestions plugin installed successfully! Please add 'zsh-autosuggestions' to the plugins list in your ~/.zshrc"
+else
+    echo "zsh-autosuggestions plugin is already installed"
+fi
+
+# --- zsh-syntax-highlighting Plugin Installation ---
+ZSH_SYNTAX_HIGHLIGHTING_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
+if [[ ! -d "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]]; then
+    echo "Installing zsh-syntax-highlighting plugin..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_SYNTAX_HIGHLIGHTING_PATH"
+    echo "zsh-syntax-highlighting plugin installed successfully! Please add 'zsh-syntax-highlighting' to the plugins list in your ~/.zshrc"
+else
+    echo "zsh-syntax-highlighting plugin is already installed"
 fi
