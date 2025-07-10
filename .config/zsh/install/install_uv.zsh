@@ -63,6 +63,16 @@ case "$OS" in
 esac
 
 # 验证安装
+# 首先尝试更新PATH，以便能找到新安装的uv
+if [ -f "$HOME/.local/bin/env" ]; then
+    source "$HOME/.local/bin/env"
+fi
+
+# 如果环境文件不存在，手动添加到PATH
+if [ ! -d "$HOME/.local/bin" ] || [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 if command -v uv >/dev/null 2>&1; then
     echo "✅ UV 安装成功!"
     uv --version
