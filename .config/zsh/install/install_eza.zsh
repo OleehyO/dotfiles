@@ -9,6 +9,7 @@ case $os in
             brew install eza
         else
             echo "eza is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -22,6 +23,7 @@ case $os in
             sudo apt install -y eza
         else
             echo "eza is already installed"
+            return 0
         fi
         ;;
     *)

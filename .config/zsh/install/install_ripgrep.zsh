@@ -8,6 +8,7 @@ case $os in
             brew install ripgrep
         else
             echo "ripgrep is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -16,6 +17,7 @@ case $os in
             sudo apt install -y ripgrep
         else
             echo "ripgrep is already installed"
+            return 0
         fi
         ;;
     *)

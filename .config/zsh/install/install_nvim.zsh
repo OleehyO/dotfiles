@@ -16,6 +16,7 @@ case $os in
             fi
         else
             echo "Neovim is already installed"
+            return 0
         fi
         ;;
     "ubuntu"|"linux")
@@ -59,7 +60,8 @@ case $os in
             fi
         else
             echo "Neovim is already installed"
-            nvim --version | head -n 1
+            nvim --version | head -n 1 || true
+            return 0
         fi
         ;;
     *)

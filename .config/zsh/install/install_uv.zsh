@@ -4,6 +4,13 @@ set -e  # 遇到错误时退出
 
 echo "🚀 开始安装 UV Python Package Manager..."
 
+# 检查是否已经安装
+if command -v uv >/dev/null 2>&1; then
+    echo "✅ UV 已经安装"
+    uv --version
+    return 0
+fi
+
 # 检测操作系统
 OS="$(uname -s)"
 ARCH="$(uname -m)"
@@ -54,3 +61,13 @@ case "$OS" in
         exit 1
         ;;
 esac
+
+# 验证安装
+if command -v uv >/dev/null 2>&1; then
+    echo "✅ UV 安装成功!"
+    uv --version
+    return 0
+else
+    echo "❌ UV 安装失败"
+    return 1
+fi

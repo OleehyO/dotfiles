@@ -16,6 +16,7 @@ if ! command -v gemini >/dev/null 2>&1; then
     npm install -g @google/gemini-cli
 else
     echo "@google/gemini-cli is already installed."
+    return 0
     # Optional: You could add a command here to check the version.
     # echo "Current version: $(gemini --version)"
 fi

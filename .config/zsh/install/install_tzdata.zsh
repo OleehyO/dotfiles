@@ -9,6 +9,7 @@ case $os in
             sudo apt install -y tzdata
         else
             echo "tzdata is already installed"
+            return 0
         fi
         
         # Set timezone to Asia/Shanghai

@@ -8,6 +8,7 @@ case $os in
             pip3 install tldr
         else
             echo "tldr is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -16,6 +17,7 @@ case $os in
             pip3 install tldr
         else
             echo "tldr is already installed"
+            return 0
         fi
         ;;
     *)

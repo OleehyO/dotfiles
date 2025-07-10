@@ -62,3 +62,6 @@ if [[ ! -d "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]]; then
 else
     echo "zsh-syntax-highlighting plugin is already installed"
 fi
+
+# Ensure script returns success if all installations/checks completed
+return 0

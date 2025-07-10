@@ -8,6 +8,7 @@ case $os in
             brew install tmux
         else
             echo "tmux is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -16,6 +17,7 @@ case $os in
             sudo apt install -y tmux
         else
             echo "tmux is already installed"
+            return 0
         fi
         ;;
     *)

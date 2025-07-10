@@ -9,6 +9,7 @@ case $os in
             brew install bat
         else
             echo "bat is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -18,6 +19,7 @@ case $os in
             echo "Note: On Ubuntu, bat is installed as 'batcat' to avoid conflicts"
         else
             echo "bat is already installed"
+            return 0
         fi
         ;;
     *)

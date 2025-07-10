@@ -8,6 +8,7 @@ case $os in
             curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
         else
             echo "z is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -16,6 +17,7 @@ case $os in
             curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
         else
             echo "z is already installed"
+            return 0
         fi
         ;;
     *)

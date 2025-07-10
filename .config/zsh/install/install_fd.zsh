@@ -8,6 +8,7 @@ case $os in
             brew install fd
         else
             echo "fd is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -20,6 +21,7 @@ case $os in
             echo "Note: ~/.local/bin should be in your PATH"
         else
             echo "fd is already installed"
+            return 0
         fi
         ;;
     *)

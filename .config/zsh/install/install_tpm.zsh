@@ -10,4 +10,5 @@ if [[ ! -d "$tpm_dir" ]]; then
     echo "Then press prefix + I in tmux to install plugins"
 else
     echo "TPM is already installed"
+    return 0
 fi 

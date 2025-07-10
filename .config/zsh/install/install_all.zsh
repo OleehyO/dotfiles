@@ -53,9 +53,20 @@ run_install() {
     echo -e "${BLUE}==================================${NC}"
     log_message "Starting installation of $step_name"
     
-    if source "$script_path" 2>&1 | tee -a "$LOG_FILE"; then
+    # 执行安装脚本并记录输出，正确捕获退出状态
+    # 使用临时文件来捕获退出状态
+    local temp_exit_file=$(mktemp)
+    (source "$script_path"; echo $? > "$temp_exit_file") 2>&1 | tee -a "$LOG_FILE"
+    local install_exit_code=$(cat "$temp_exit_file")
+    rm -f "$temp_exit_file"
+    
+    if [ "${install_exit_code:-1}" -eq 0 ]; then
+        # 安装成功，手动设置退出代码为0再调用handle_error
+        (exit 0)
         handle_error "$step_name"
     else
+        # 手动设置退出代码以便 handle_error 正确处理
+        (exit "${install_exit_code:-1}")
         handle_error "$step_name"
         echo -e "${YELLOW}Options:${NC}"
         echo -e "${YELLOW}  r) Retry this installation${NC}"

@@ -9,6 +9,7 @@ case $os in
             ~/.fzf/install
         else
             echo "fzf is already installed"
+            return 0
         fi
         ;;
     "ubuntu")
@@ -18,6 +19,7 @@ case $os in
             ~/.fzf/install
         else
             echo "fzf is already installed"
+            return 0
         fi
         ;;
     *)
