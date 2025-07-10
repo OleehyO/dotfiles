@@ -9,6 +9,7 @@
 # item中导入MacItemProfile.json：Item -> settings -> profiles -> other actions -> import json files -> 选中这个配置 -> other actions -> set as default
 # ITEM的其他主题可以参考：https://github.com/mbadolato/iTerm2-Color-Schemes
 
+export SHELL=$(which zsh)
 DOTFILE="${HOME}/dotfiles"
 
 # -- 加载私有配置（包含代理设置等不能公开的操作） --------------
