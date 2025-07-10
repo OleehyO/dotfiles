@@ -1,11 +1,11 @@
-# My Dotfiles
+# OleehyO Dotfiles
 
 ## 安装
 
 1.  克隆仓库
 
     ```bash
-    git clone https://github.com/your-username/dotfiles.git ~/dotfiles
+    git clone https://github.com/OleehyO/dotfiles.git ~/dotfiles
     ```
 
 2. 引入functions.zsh：
