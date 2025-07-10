@@ -5,7 +5,7 @@
     ```bash
     git clone https://github.com/OleehyO/dotfiles.git ~/dotfiles
     ```
-2.  安装依赖库
+2.  安装依赖库（要先确保设置了网络代理，否则可能会安装失败）
 
     ```bash
     source ~/dotfiles/.config/zsh/install/install_all.zsh
