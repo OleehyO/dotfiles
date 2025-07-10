@@ -20,7 +20,6 @@ set_proxy() {
         export https_proxy="$1"
         export HTTP_PROXY="$1"
         export HTTPS_PROXY="$1"
-        echo "Proxy set to: $1"
     fi
 }
 
@@ -30,7 +29,6 @@ unset_proxy() {
     unset https_proxy
     unset HTTP_PROXY
     unset HTTPS_PROXY
-    echo "Proxy settings cleared"
 }
 
 # 显示当前代理状态
