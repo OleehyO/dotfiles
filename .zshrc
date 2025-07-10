@@ -10,6 +10,12 @@
 # ITEM的其他主题可以参考：https://github.com/mbadolato/iTerm2-Color-Schemes
 
 
+# -- 加载私有配置（包含代理设置等不能公开的操作） --------------
+if [[ -f "$HOME/.private.zsh" ]]; then
+    source "$HOME/.private.zsh"
+fi
+
+
 # -- PATH 相关 ------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
 
