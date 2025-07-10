@@ -3,3 +3,6 @@
 .config/fish/
 
 .private.zsh
+
+**/*.log
+**/*.backup*
