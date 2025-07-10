@@ -1,3 +1,25 @@
+**Language**: 中文 | [English](README_en.md)
+
+# Dotfiles Configuration
+
+本仓库的目标：能在各种开发机（or 本地机）上无痛地setup起自己熟悉的开发环境，从而获得一致的开发体验
+
+
+## 展示
+<div align="center">
+  <table style="border: none;">
+    <tr>
+      <td style="border: none;"><img src="assets/demo1.png" alt="Demo 1" width="400"/></td>
+      <td style="border: none;"><img src="assets/demo2.png" alt="Demo 2" width="400"/></td>
+    </tr>
+    <tr>
+      <td align="center" style="border: none;"><em>Screenshot</em></td>
+      <td align="center" style="border: none;"><em>Vim Style</em></td>
+    </tr>
+  </table>
+</div>
+
+
 ## 安装
 
 1. 安装zsh shell
@@ -7,7 +29,7 @@
     ```bash
     git clone https://github.com/OleehyO/dotfiles.git ~/dotfiles
     ```
-3.  安装依赖库（要先确保设置了网络代理，否则可能会安装失败）
+3.  安装依赖库（确保网络通畅）
 
     ```bash
     zsh  # 进入zsh shell
@@ -17,7 +39,7 @@
 
     > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./.config/zsh/install/)
 
-4. 创建软链接
+4. 创建软链接 & 拷贝文件
 
     ```bash
     cp ~/dotfiles/.zshrc ~/.zshrc
@@ -32,6 +54,37 @@
 5. 把zsh设置为默认shell
 
     > vscode中linux上的默认shell通常为bash，需要`cmd` + `,` 搜索terminal.integrated.defaultProfile.linux，设置为zsh
+
+6. 重新加载终端
+
+
+## macOS 用户特别指南
+
+为了获得最佳的视觉体验，macOS 用户建议进行以下配置。
+
+* 安装iTerm2：从 [iTerm2 官网](https://iterm2.com/index.html) 下载并安装。
+
+* 安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
+
+* 导入iTerm2的主题：本仓库提供了一个预设的 iTerm2 主题配置文件 `MacItemProfile.json`。
+
+    1.  打开 iTerm2，进入 *Settings* -> *Profiles*。
+    2.  点击左下方的 *Other Actions...* -> *Import JSON Profiles...*。
+    3.  选择本仓库中的 `MacItemProfile.json` 文件。
+    4.  导入后，再次点击 *Other Actions...* -> *Set as Default* 将其设为默认配置。
+
+## VS Code / Cursor 集成终端设置
+
+如果你使用VS Code的集成终端，请在 `settings.json` 中添加以下配置：
+
+```json
+{
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font"
+}
+```
+
+> 或"CMD" + ","然后搜索font
+
 
 ## 实用函数
 
@@ -58,30 +111,3 @@
 ## 常用别名
 
 常用的别名定义在 `.config/zsh/aliases.zsh` 文件中，你可以通过 `showaliases` 函数查看所有别名。
-
-## MacOS 用户特别指南
-
-为了获得最佳的视觉体验，macOS 用户建议进行以下配置。
-
-* 安装iTerm2：从 [iTerm2 官网](https://iterm2.com/index.html) 下载并安装。
-
-* 安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
-
-* 导入iTerm2的主题：本仓库提供了一个预设的 iTerm2 主题配置文件 `MacItemProfile.json`。
-
-    1.  打开 iTerm2，进入 *Settings* -> *Profiles*。
-    2.  点击左下方的 *Other Actions...* -> *Import JSON Profiles...*。
-    3.  选择本仓库中的 `MacItemProfile.json` 文件。
-    4.  导入后，再次点击 *Other Actions...* -> *Set as Default* 将其设为默认配置。
-
-## VS Code / Cursor 集成终端设置
-
-如果你使用 VS Code 的集成终端，请在 `settings.json` 中添加以下配置：
-
-```json
-{
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font"
-}
-```
-
-> 或"CMD" + ","然后搜索font
