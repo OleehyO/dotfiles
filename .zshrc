@@ -12,12 +12,6 @@
 export SHELL=$(which zsh)
 DOTFILE="${HOME}/dotfiles"
 
-# -- 加载私有配置（包含代理设置等不能公开的操作） --------------
-if [[ -f "$DOTFILE/.private.zsh" ]]; then
-    source "$DOTFILE/.private.zsh"
-fi
-
-
 # -- PATH 相关 ------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -110,6 +104,7 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # -- fzf界面美化 --------------------------------------------------
 # ref： https://github.com/catppuccin/fzf?tab=readme-ov-file#usage
+
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
 --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
@@ -131,9 +126,15 @@ export FZF_CTRL_T_OPTS="--style full \
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Homebrew 镜像设置
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
-export HOMEBREW_NO_AUTO_UPDATE=1
+# Homebrew 镜像设置 (仅 macOS)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+    # 清华源：https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+
+    # homebrew自动更新
+    # export HOMEBREW_NO_AUTO_UPDATE=1
+fi
 
 # 其他环境变量
 export TLDR_AUTO_UPDATE_DISABLED=1
@@ -186,3 +187,8 @@ fi
 unset __conda_setup
 
 # <<< conda initialize <<<
+
+# -- 加载私有配置（包含代理设置等不能公开的操作） --------------
+if [[ -f "$DOTFILE/.private.zsh" ]]; then
+    source "$DOTFILE/.private.zsh"
+fi
