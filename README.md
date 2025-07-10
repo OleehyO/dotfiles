@@ -20,11 +20,11 @@
 4. 创建软链接
 
     ```bash
-    ln -s ~/dotfiles/.zshrc ~/.zshrc
+    cp ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     ln -s ~/dotfiles/.condarc ~/.condarc
 
-    ln -s ~/dotfiles/.config/ ~
+    cp -r ~/dotfiles/.config/ ~
     ```
 
     > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
