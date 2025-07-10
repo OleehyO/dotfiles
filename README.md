@@ -5,13 +5,7 @@
     ```bash
     git clone https://github.com/OleehyO/dotfiles.git ~/dotfiles
     ```
-
-2. 引入functions.zsh：
-    ```bash
-    source ~/dotfiles/.config/zsh/functions.zsh
-    ```
-
-3.  安装依赖库
+2.  安装依赖库
 
     ```bash
     source ~/dotfiles/.config/zsh/install/install_all.zsh
@@ -19,7 +13,7 @@
 
     > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./.config/zsh/install/)
 
-4. 创建软链接
+3. 创建软链接
 
     ```bash
     ln -s ~/dotfiles/.zshrc ~/.zshrc
@@ -28,6 +22,8 @@
 
     ln -s ~/dotfiles/.config/ ~
     ```
+
+    > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
 
 ## 实用函数
 
