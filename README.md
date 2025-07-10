@@ -31,6 +31,8 @@
 
 5. 把zsh设置为默认shell
 
+    > vscode中linux上的默认shell通常为bash，需要`cmd` + `,` 搜索terminal.integrated.defaultProfile.linux，设置为zsh
+
 ## 实用函数
 
 所有函数定义在 `.config/zsh/functions.zsh` 文件中。
