@@ -1,5 +1,3 @@
-# OleehyO Dotfiles
-
 ## 安装
 
 1.  克隆仓库
@@ -16,7 +14,7 @@
 3.  安装依赖库
 
     ```bash
-    zsh ~/dotfiles/.config/zsh/install/install_all.zsh
+    source ~/dotfiles/.config/zsh/install/install_all.zsh
     ```
 
     > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./.config/zsh/install/)
@@ -26,8 +24,9 @@
     ```bash
     ln -s ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/.config/ ~/.config/
     ln -s ~/dotfiles/.condarc ~/.condarc
+
+    ln -s ~/dotfiles/.config/ ~
     ```
 
 ## 实用函数
