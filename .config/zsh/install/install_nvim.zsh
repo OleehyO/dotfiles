@@ -1,6 +1,40 @@
 # Install Neovim
 local os=$(detect_os)
 
+# Function to compare version numbers
+compare_version() {
+    local version1=$1
+    local version2=$2
+    
+    # Remove 'v' prefix and split version numbers
+    version1=$(echo "$version1" | sed 's/^v//')
+    version2=$(echo "$version2" | sed 's/^v//')
+    
+    # Use sort -V to compare versions
+    local higher=$(printf '%s\n%s\n' "$version1" "$version2" | sort -V | tail -n1)
+    
+    if [[ "$higher" == "$version1" ]]; then
+        return 0  # version1 >= version2
+    else
+        return 1  # version1 < version2
+    fi
+}
+
+# Function to check nvim version requirement
+check_nvim_version() {
+    local current_version=$(nvim --version | head -n 1 | awk '{print $2}')
+    local required_version="0.11.0"
+    
+    if compare_version "$current_version" "$required_version"; then
+        echo "Neovim version $current_version meets requirement (>= $required_version)"
+        return 0
+    else
+        echo "ERROR: Neovim version $current_version is too old (requires >= $required_version)"
+        echo "Please uninstall the current version of Neovim and run this script again to install the latest version."
+        return 1
+    fi
+}
+
 case $os in
     "macos")
         if ! command -v nvim >/dev/null 2>&1; then
@@ -16,6 +50,9 @@ case $os in
             fi
         else
             echo "Neovim is already installed"
+            if ! check_nvim_version; then
+                return 1
+            fi
             return 0
         fi
         ;;
@@ -60,7 +97,9 @@ case $os in
             fi
         else
             echo "Neovim is already installed"
-            nvim --version | head -n 1 || true
+            if ! check_nvim_version; then
+                return 1
+            fi
             return 0
         fi
         ;;
