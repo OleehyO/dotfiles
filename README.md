@@ -1,19 +1,23 @@
 ## 安装
 
-1.  克隆仓库
+1. 安装zsh shell
+
+2.  克隆仓库
 
     ```bash
     git clone https://github.com/OleehyO/dotfiles.git ~/dotfiles
     ```
-2.  安装依赖库（要先确保设置了网络代理，否则可能会安装失败）
+3.  安装依赖库（要先确保设置了网络代理，否则可能会安装失败）
 
-    ```bash
+    ```zsh
+    zsh  # 进入zsh shell
+
     source ~/dotfiles/.config/zsh/install/install_all.zsh
     ```
 
     > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./.config/zsh/install/)
 
-3. 创建软链接
+4. 创建软链接
 
     ```bash
     ln -s ~/dotfiles/.zshrc ~/.zshrc
@@ -24,6 +28,8 @@
     ```
 
     > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
+
+5. 把zsh设置为默认shell
 
 ## 实用函数
 
