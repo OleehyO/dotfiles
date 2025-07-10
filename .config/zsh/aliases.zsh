@@ -81,6 +81,7 @@ alias tkss="tmux kill-server"
 # Git 别名
 # =============================================================================
 alias g="git"
+alias gs="git status --short"
 alias gst="git status"
 alias gl="git pull"
 alias gp="git push"
@@ -88,6 +89,7 @@ alias ga="git add"
 alias gc="git commit -v"
 alias gco="git checkout"
 alias gb="git branch"
+alias gbd="git branch -d"
 alias gd="git diff"
 alias glog="git log --oneline --graph"
 
