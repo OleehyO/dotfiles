@@ -22,7 +22,7 @@ alias vi="$VISUAL"
 
 
 # -- 加载别名配置和函数配置 --------------------------------
-DOTFILE="${HOME}/dotfile"
+DOTFILE="${HOME}/dotfiles"
 source "${DOTFILE}/.config/zsh/functions.zsh"
 
 
