@@ -26,10 +26,6 @@ DOTFILE="${HOME}/dotfiles"
 source "${DOTFILE}/.config/zsh/functions.zsh"
 
 
-# -- moonshot related --------------------------------------
-eval $(curl -fsSL proxy.msh.work:3128/env --noproxy proxy.msh.work)
-
-
 # =============================================================================
 # Oh my zsh
 # =============================================================================
