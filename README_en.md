@@ -1,10 +1,11 @@
-**Language**: [中文](README.md) | English
+[中文](README.md) | English
 
 # Dotfiles Configuration
 
 Target: Painlessly set up familiar development environments across various development machines for a consistent development experience.
 
 ## Showcase
+
 <div align="center">
   <table style="border: none;">
     <tr>
@@ -39,16 +40,15 @@ Target: Painlessly set up familiar development environments across various devel
     > If there are dependency errors during installation, it's recommended to install manually. You can refer to the [install/ directory](./.config/zsh/install/)
 
 4. Create symbolic links & copy file
+    > Remember to backup your previous .zshrc, .tmux.conf, .condarc, .config/ files
 
     ```bash
     cp ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     ln -s ~/dotfiles/.condarc ~/.condarc
 
-    cp -r ~/dotfiles/.config/ ~
+    cp -r ~/dotfiles/.config/* ~/.config/
     ```
-
-    > Remember to backup your previous .zshrc, .tmux.conf, .condarc, .config/ files
 
 5. Set zsh as the default shell
 
@@ -81,7 +81,7 @@ If you use VS Code's integrated terminal, please add the following configuration
 }
 ```
 
-> Or press "CMD" + "," and then search for font 
+> Or press "CMD" + "," and then search for font
 
 ## Utility Functions
 
