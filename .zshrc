@@ -9,10 +9,11 @@
 # item中导入MacItemProfile.json：Item -> settings -> profiles -> other actions -> import json files -> 选中这个配置 -> other actions -> set as default
 # ITEM的其他主题可以参考：https://github.com/mbadolato/iTerm2-Color-Schemes
 
+DOTFILE="${HOME}/dotfiles"
 
 # -- 加载私有配置（包含代理设置等不能公开的操作） --------------
-if [[ -f "$HOME/.private.zsh" ]]; then
-    source "$HOME/.private.zsh"
+if [[ -f "$DOTFILE/.private.zsh" ]]; then
+    source "$DOTFILE/.private.zsh"
 fi
 
 
@@ -28,7 +29,6 @@ alias vi="$VISUAL"
 
 
 # -- 加载别名配置和函数配置 --------------------------------
-DOTFILE="${HOME}/dotfiles"
 source "${DOTFILE}/.config/zsh/functions.zsh"
 
 
