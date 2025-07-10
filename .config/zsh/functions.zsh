@@ -93,7 +93,7 @@ update() {
     case $os in
         "macos")
             echo "Updating Homebrew..."
-            brew update && brew upgrade
+            brew update && brew upgrade --verbose
             ;;
         "ubuntu")
             echo "Updating APT packages..."
