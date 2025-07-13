@@ -58,7 +58,7 @@
         "WinLaptop": "windows"
     },
     "editor.rulers": [
-        100
+        120
     ],
     "Codegeex.Privacy": true,
     "editor.tokenColorCustomizations": {
