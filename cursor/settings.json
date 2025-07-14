@@ -58,7 +58,7 @@
         "WinLaptop": "windows"
     },
     "editor.rulers": [
-        100
+        120
     ],
     "Codegeex.Privacy": true,
     "editor.tokenColorCustomizations": {
@@ -137,7 +137,7 @@
     "liveServer.settings.donotShowInfoMsg": true,
     "C_Cpp.intelliSenseUpdateDelay": 500,
     "ruff.configuration": "",
-    "ruff.lineLength": 100,
+    "ruff.lineLength": 120,
     "diffEditor.ignoreTrimWhitespace": false,
     "git.autofetch": true,
     "window.openFoldersInNewWindow": "on",
