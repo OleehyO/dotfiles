@@ -14,7 +14,7 @@ alias ....="cd ../../.."
 
 # 使用 eza 替代 ls
 if command -v eza >/dev/null 2>&1; then
-    alias ls="eza --icons"
+    alias ls="eza"
     alias ll="eza -l --icons --git"
     alias la="eza -la --icons --git"
     alias lt="eza -T --icons --level=3"
