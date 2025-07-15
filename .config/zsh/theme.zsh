@@ -58,7 +58,8 @@ precmd() {
     local python_env_str=""
     if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
         python_env_str="${RPROMPT_COLOR}${PYTHON_ICON} ${CONDA_DEFAULT_ENV}%f"
-    elif [[ -n "$VIRTUAL_ENV" ]]; then
+    elif [[ -n "$VIRTUAL_ENV" && -d "$VIRTUAL_ENV" && "$PATH" == *"$VIRTUAL_ENV/bin"* ]]; then
+        # 检查虚拟环境是否真正激活：PATH中包含该环境的bin目录
         # :h 获取父目录路径, :t 再获取该路径的名称
         python_env_str="${RPROMPT_COLOR}${PYTHON_ICON} ${${VIRTUAL_ENV:h}:t}%f"
     fi
