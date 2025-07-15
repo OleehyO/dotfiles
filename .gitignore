@@ -1,6 +1,9 @@
 .DS_Store
 
 .config/fish/
+.config/clash/
+.config/configstore/
+.config/iterm2/
 
 .private.zsh
 
