@@ -89,7 +89,7 @@ All functions are defined in the `.config/zsh/functions.zsh` file.
 
 | Function | Description |
 | :--- | :--- |
-| `set_proxy [addr]` | Set terminal proxy, default address is `http://127.0.0.1:64991`. |
+| `set_proxy [addr]` | Set terminal proxy, default address is `http://127.0.0.1:7890`. |
 | `unset_proxy` | Unset terminal proxy. |
 | `show_proxy` | Show current proxy status. |
 | `update` | Automatically update all packages based on OS (`brew upgrade` or `apt upgrade`). |
@@ -104,6 +104,7 @@ All functions are defined in the `.config/zsh/functions.zsh` file.
 | `editaliases` | Open aliases configuration file with default editor. |
 | `editfunctions` | Open functions configuration file with default editor. |
 | `reload` | Reload Zsh configuration, equivalent to `source ~/.zshrc`. |
+| `klaude` | Use Claude Code + Moonshot API. |
 
 ## Common Aliases
 

@@ -89,7 +89,7 @@
 
 | 函数 | 描述 |
 | :--- | :--- |
-| `set_proxy [addr]` | 设置终端代理，默认地址为 `http://127.0.0.1:64991`。 |
+| `set_proxy [addr]` | 设置终端代理，默认地址为 `http://127.0.0.1:7890`。 |
 | `unset_proxy` | 取消终端代理。 |
 | `show_proxy` | 显示当前的代理状态。 |
 | `update` | 根据操作系统，自动更新所有包 (`brew upgrade` 或 `apt upgrade`)。 |
@@ -104,6 +104,7 @@
 | `editaliases` | 使用默认编辑器打开别名配置文件。 |
 | `editfunctions` | 使用默认编辑器打开函数配置文件。 |
 | `reload` | 重新加载 Zsh 配置，等同于 `source ~/.zshrc`。 |
+| `klaude` | 使用Claude Code + Moonshot API。 |
 
 ## 常用别名
 
