@@ -9,11 +9,10 @@
 set_proxy() {
     if [ $# -eq 0 ]; then
         # 使用默认代理地址
-        export http_proxy="http://127.0.0.1:64991"
-        export https_proxy="http://127.0.0.1:64991"
-        export HTTP_PROXY="http://127.0.0.1:64991"
-        export HTTPS_PROXY="http://127.0.0.1:64991"
-        echo "Proxy set to: http://127.0.0.1:64991"
+        export http_proxy="http://127.0.0.1:7890"
+        export https_proxy="http://127.0.0.1:7890"
+        export HTTP_PROXY="http://127.0.0.1:7890"
+        export HTTPS_PROXY="http://127.0.0.1:7890"
     else
         # 使用用户提供的代理地址
         export http_proxy="$1"
@@ -180,6 +179,13 @@ search() {
 # =============================================================================
 # 实用工具函数
 # =============================================================================
+
+# 使用moonshot Claude API
+klaude() {
+    export ANTHROPIC_BASE_URL="$MSH_ANTHROPIC_BASE_URL"
+    export ANTHROPIC_API_KEY="$MSH_ANTHROPIC_API_KEY"
+    claude "$@"
+}
 
 # 解压文件/目录
 extract() {
