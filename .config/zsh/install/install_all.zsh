@@ -131,6 +131,7 @@ declare -A INSTALL_STEPS=(
     ["uv"]="$install_dir/install_uv.zsh"
     ["zip"]="$install_dir/install_zip.zsh"
     ["Node.js"]="$install_dir/install_node.zsh"
+    ["Claude Code"]="$install_dir/install_claude_code.zsh"
 )
 
 # 执行所有安装步骤
