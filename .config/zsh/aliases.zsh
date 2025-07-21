@@ -34,13 +34,13 @@ elif command -v batcat >/dev/null 2>&1; then
 fi
 
 # 使用 fd 替代 find
-if command -v fd >/dev/null 2>&1; then
-    alias find="fd"
-elif command -v fdfind >/dev/null 2>&1; then
-    alias find="fdfind"
-fi
+# if command -v fd >/dev/null 2>&1; then
+#     alias find="fd"
+# elif command -v fdfind >/dev/null 2>&1; then
+#     alias find="fdfind"
+# fi
 
-# # 使用 rg 替代 grep
+# 使用 rg 替代 grep
 # if command -v rg >/dev/null 2>&1; then
 #     alias grep="rg"
 # fi
