@@ -24,13 +24,13 @@ else
     alias lt="tree -L 3"
 fi
 
-# 使用 bat 替代 cat
+# 使用 bat 设置
 if command -v bat >/dev/null 2>&1; then
-    alias cat="bat --paging=never"
-    alias catp="bat"
+    alias bat="bat --paging=never"
+    alias batp="bat"
 elif command -v batcat >/dev/null 2>&1; then
-    alias cat="batcat --paging=never"
-    alias catp="batcat"
+    alias bat="batcat --paging=never"
+    alias batp="batcat"
 fi
 
 # 使用 fd 替代 find
