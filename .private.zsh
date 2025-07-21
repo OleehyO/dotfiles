@@ -25,3 +25,11 @@ eval $(curl -fsSL proxy.msh.work:3128/env --noproxy proxy.msh.work)
 # alias vpn-connect="sudo openvpn /path/to/company.ovpn"
 
 # 注意：请根据实际需要添加您的隐秘配置 
+
+# claude API
+export ANTHROPIC_BASE_URL=
+export ANTHROPIC_API_KEY=
+
+# moonshot + claude
+export MSH_ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic/
+export MSH_ANTHROPIC_API_KEY=
