@@ -46,6 +46,7 @@ Target: Painlessly set up familiar development environments across various devel
     cp ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     ln -s ~/dotfiles/.condarc ~/.condarc
+    cp -r ~/dotfiles/.claude ~/.claude
 
     cp -r ~/dotfiles/.config/* ~/.config/
     ```
@@ -105,6 +106,15 @@ All functions are defined in the `.config/zsh/functions.zsh` file.
 | `editfunctions` | Open functions configuration file with default editor. |
 | `reload` | Reload Zsh configuration, equivalent to `source ~/.zshrc`. |
 | `klaude` | Use Claude Code + Moonshot API. |
+
+## Claude Code Commands
+
+The `.claude/commands/` directory contains custom commands for Claude Code:
+
+- **`code-review`** - Code review guidelines providing systematic code review checklists and comment templates
+- **`make-commit`** - Git commit message conventions defining standardized commit message formats and tag systems
+
+These commands will be available after installation via the `~/.claude` directory.
 
 ## Common Aliases
 

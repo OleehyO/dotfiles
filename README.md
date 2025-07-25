@@ -46,6 +46,7 @@
     cp ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     ln -s ~/dotfiles/.condarc ~/.condarc
+    cp -r ~/dotfiles/.claude ~/.claude
 
     cp -r ~/dotfiles/.config/* ~/.config/
     ```
@@ -105,6 +106,15 @@
 | `editfunctions` | 使用默认编辑器打开函数配置文件。 |
 | `reload` | 重新加载 Zsh 配置，等同于 `source ~/.zshrc`。 |
 | `klaude` | 使用Claude Code + Moonshot API。 |
+
+## Claude Code 命令
+
+`.claude/commands/` 目录包含了 Claude Code 的自定义命令：
+
+- **`code-review`** - 代码审查指南，提供系统化的代码审查检查清单和评论模板
+- **`make-commit`** - Git提交信息规范，定义了标准化的提交消息格式和标签系统
+
+这些命令在安装时会通过软链接 `~/.claude` 自动可用。
 
 ## 常用别名
 
