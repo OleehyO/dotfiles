@@ -1,0 +1,17 @@
+# Project Guidelines
+
+...
+
+## Notes
+
+- The project should be well-tested and well-documented.
+
+- The code should be clean and easy to understand.
+
+- The test file name should be like `test_*.py` and put in the `tests/unit` or `tests/integration` folder.
+
+- Use pytest as the test framework.
+
+- The last line of code files should be an empty line.
+
+- The project use `uv` as the python package and project manager, so you should use `uv pip` or `python -m pip` instead of direct usage of `pip`.
