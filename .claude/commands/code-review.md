@@ -1,6 +1,16 @@
-Perform code review on staged changes, ignore data files.
+Perform code review on staged changes, ignore data files and unstaged files.
 
 # Code Review Guidelines
+
+## Scope
+**IMPORTANT**: Only review files that have been staged (added to git index with `git add`). 
+- ✅ Include: Staged changes (`git diff --cached`)
+- ❌ Exclude: Unstaged changes (`git diff`)
+- ❌ Exclude: Untracked files
+- ❌ Exclude: Data files, binary files, and generated files
+
+Use `git status` to identify which files are staged for commit before starting the review.
+
 ## Review Categories
 
 ### 🔴 **Critical Issues** (Must Fix)
