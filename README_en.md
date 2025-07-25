@@ -111,8 +111,8 @@ All functions are defined in the `.config/zsh/functions.zsh` file.
 
 The `.claude/commands/` directory contains custom commands for Claude Code:
 
-- `/code-review` - Code review guidelines providing systematic code review checklists and comment templates
-- `/make-commit` - Git commit message conventions defining standardized commit message formats and tag systems
+- `/code-review` - Code review guidelines providing systematic code review checklists and comment templates (uses `staged-code-reviewer` sub agent)
+- `/make-commit` - Git commit message conventions defining standardized commit message formats and tag systems (uses `commit-crafter` sub agent)
 
 These commands will be available after installation via the `~/.claude` directory.
 
