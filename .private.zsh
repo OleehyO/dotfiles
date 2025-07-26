@@ -28,8 +28,12 @@ eval $(curl -fsSL proxy.msh.work:3128/env --noproxy proxy.msh.work)
 
 # claude API
 export ANTHROPIC_BASE_URL=
-export ANTHROPIC_API_KEY=
+export ANTHROPIC_AUTH_TOKEN=
 
 # moonshot + claude
 export MSH_ANTHROPIC_BASE_URL=https://api.moonshot.cn/anthropic/
-export MSH_ANTHROPIC_API_KEY=
+export MSH_ANTHROPIC_AUTH_TOKEN=
+
+# qwen + claude
+export QWEN_ANTHROPIC_BASE_URL=https://dashscope.aliyuncs.com/api/v2/apps/claude-code-proxy
+export QWEN_ANTHROPIC_AUTH_TOKEN=
