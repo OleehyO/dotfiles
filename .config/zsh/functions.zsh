@@ -183,7 +183,14 @@ search() {
 # 使用moonshot Claude API
 klaude() {
     export ANTHROPIC_BASE_URL="$MSH_ANTHROPIC_BASE_URL"
-    export ANTHROPIC_API_KEY="$MSH_ANTHROPIC_API_KEY"
+    export ANTHROPIC_AUTH_TOKEN="$MSH_ANTHROPIC_AUTH_TOKEN"
+    claude "$@"
+}
+
+# 使用QWEN Claude API
+qlaude() {
+    export ANTHROPIC_BASE_URL="$QWEN_ANTHROPIC_BASE_URL"
+    export ANTHROPIC_AUTH_TOKEN="$QWEN_ANTHROPIC_AUTH_TOKEN"
     claude "$@"
 }
 
