@@ -106,6 +106,7 @@ All functions are defined in the `.config/zsh/functions.zsh` file.
 | `editfunctions` | Open functions configuration file with default editor. |
 | `reload` | Reload Zsh configuration, equivalent to `source ~/.zshrc`. |
 | `klaude` | Use Claude Code + Moonshot API. |
+| `qlaude` | Use Claude Code + QWEN API. |
 
 ## Claude Code Commands
 

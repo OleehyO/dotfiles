@@ -106,6 +106,7 @@
 | `editfunctions` | 使用默认编辑器打开函数配置文件。 |
 | `reload` | 重新加载 Zsh 配置，等同于 `source ~/.zshrc`。 |
 | `klaude` | 使用Claude Code + Moonshot API。 |
+| `qlaude` | 使用Claude Code + QWEN API。 |
 
 ## Claude Code 命令
 
