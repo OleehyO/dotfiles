@@ -44,9 +44,11 @@ Target: Painlessly set up familiar development environments across various devel
 
     ```bash
     cp ~/dotfiles/.zshrc ~/.zshrc
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/.condarc ~/.condarc
+    cp ~/dotfiles/.tmux.conf ~/.tmux.conf
+    cp ~/dotfiles/.condarc ~/.condarc
+
     cp -r ~/dotfiles/.claude ~/.claude
+    cp -r ~/dotfiles/.cursor ~/.cursor
 
     cp -r ~/dotfiles/.config/* ~/.config/
     cp -r ~/dotfiles/mcphub ~ 
