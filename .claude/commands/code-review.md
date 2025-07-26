@@ -1,1 +1,1 @@
-Use code-reviewer sub agent to perform code review
+Use staged-code-reviewer sub agent to perform code review
