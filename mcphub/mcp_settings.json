@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
     "playwright": {
       "command": "npx",
       "args": [
@@ -48,12 +52,5 @@
         "SLACK_TEAM_ID": "your-team-id"
       }
     }
-  },
-  "users": [
-    {
-      "username": "admin",
-      "password": "$2b$10$36z/O30.LdE5HqqEq.uKfu9u6IkyVINNgnqR5kITDcypdL8ezR2li",
-      "isAdmin": true
-    }
-  ]
+  }
 }
