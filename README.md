@@ -49,6 +49,7 @@
     cp -r ~/dotfiles/.claude ~/.claude
 
     cp -r ~/dotfiles/.config/* ~/.config/
+    cp -r ~/dotfiles/mcphub ~ 
     ```
 
 5. 把zsh设置为默认shell
@@ -120,3 +121,105 @@
 ## 常用别名
 
 常用的别名定义在 `.config/zsh/aliases.zsh` 文件中，你可以通过 `showaliases` 函数查看所有别名。
+
+## [Optional] MCP Server
+
+- 安装docker
+
+  - MacOS: [Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+  - Ubuntu:
+    ```bash
+    $ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    $ sudo apt update
+    $ sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+    # 启动docker服务
+    $ sudo systemctl start docker
+    $ sudo systemctl enable docker
+    ```
+
+- 启动mcphub服务
+
+  ```bash
+  docker run -p 3000:3000 -v ~/mcphub/mcp_settings.json:/app/mcp_settings.json -v ~/mcphub/data:/app/data samanhappy/mcphub
+
+  # 初始账户: 账号admin，密码为admin123
+  ```
+
+- `mcp_settings.json`中预置的且需要配置token的mcp server：
+
+  - [lark-mcp](https://www.volcengine.com/mcp-marketplace/detail?name=lark-mcp)：飞书，有些权限默认启动设置下不会开启，可以参考具体文档。
+
+  - [amap](https://bailian.console.aliyun.com/?spm=5176.29619931.J_AHgvE-XDhTWrtotIBlDQQ.1.74cd521cSWBqUb&tab=mcp#/mcp-market/detail/amap-maps)：高德地图
+
+### 在Claude Code中注册已经部署的MCP Server
+
+- reference： [[mcphub ref](https://github.com/samanhappy/mcphub/blob/main/README.zh.md#%E6%94%AF%E6%8C%81%E6%B5%81%E5%BC%8F%E7%9A%84-http-%E7%AB%AF%E7%82%B9)] [[Claude Code ref](https://docs.anthropic.com/en/docs/claude-code/mcp)]
+
+  ```bash
+  # 添加所有mcphub中部署的mcp server
+  claude mcp add --transport http http-server http://localhost:3000/mcp
+
+  # 或者只添加mcphub中的某个已经注册的mcp服务
+  claude mcp add --transport http http-server http://localhost:3000/mcp/{server}
+
+  # 或者只添加某个group
+  claude mcp add --transport http http-server http://localhost:3000/mcp/{group}
+  ```
+
+* 其他操作
+
+  ```bash
+  # 列出所有已配置的server（可以检查连接是否正常）
+  claude mcp list
+
+  # 获取某个server的详细信息
+  claude mcp get my-server
+
+  # 删除某个server
+  claude mcp remove my-server
+  ```
+
+  > 如果发现网络连接存在问题，建议检查是否开启了网络代理 or 代理是否正常
+
+
+### 在Cursor中使用MCP Server
+
+- [ref](https://docs.cursor.com/context/mcp#model-context-protocol-mcp)：支持直接在cursor内部部署并使用；或者使用已经launch起来的mcp server或是remote mcp server
+
+- 在当前项目下创建`.cursor/mcp.json`或者在用户目录下创建`~/.cursor/mcp.json`
+
+- 配置`mcp.json`
+
+  - 本地mcp server，由cursor来host
+
+    ```json
+    {
+      "mcpServers": {
+        "server-name": {
+          "command": "npx",
+          "args": ["-y", "mcp-server"],
+          "env": {
+            "API_KEY": "value"
+          }
+        }
+      }
+    }
+    ```
+  
+  - Remote server
+
+    ```json
+    {
+      "mcpServers": {
+        "server-name": {
+          "url": "http://localhost:3000/mcp",
+          "headers": {
+            "API_KEY": "value"
+          }
+        }
+      }
+    }
+    ```
