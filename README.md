@@ -47,11 +47,10 @@
     cp ~/dotfiles/.tmux.conf ~/.tmux.conf
     cp ~/dotfiles/.condarc ~/.condarc
 
-    cp -r ~/dotfiles/.claude ~/.claude
-    cp -r ~/dotfiles/.cursor ~/.cursor
-
-    cp -r ~/dotfiles/.config/* ~/.config/
-    cp -r ~/dotfiles/mcphub ~ 
+    mkdir ~/.config && cp -r ~/dotfiles/.config/* ~/.config/
+    mkdir ~/.claude && cp -r ~/dotfiles/.claude/* ~/.claude/
+    mkdir ~/.cursor && cp -r ~/dotfiles/.cursor/* ~/.cursor/
+    mkdir ~/mcphub && cp -r ~/dotfiles/mcphub/* ~/mcphub/
     ```
 
 5. 把zsh设置为默认shell
