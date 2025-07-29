@@ -61,27 +61,22 @@
         120
     ],
     "Codegeex.Privacy": true,
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": [
-                    "variable.parameter.function.language.special.self.python",
-                    "variable.parameter.function.language.special.cls.python"
-                ],
-                "settings": {
-                    "foreground": "#936032",
-                    "fontStyle": "italic"
-                }
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true, // Keep semantic highlighting enabled
+        "rules": {
+            // Target the specific semantic tokens for self and cls from Pylance
+            "selfParameter:python": {
+                "foreground": "#936032",
+                "italic": true
             },
-            {
-               "scope": [
-                    "variable.parameter"
-                ],
-                "settings": {
-                    "foreground": "#000000"
-                }
+            "clsParameter:python": {
+                "foreground": "#936032",
+                "italic": true
+            },
+            "parameter:python": {
+                "foreground": "#000000" 
             }
-        ]
+        }
     },
     "tabnine.experimentalAutoImports": true,
     "files.watcherExclude": {
