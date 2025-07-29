@@ -194,6 +194,13 @@ qlaude() {
     claude "$@"
 }
 
+# 使用ZHIPU Claude API
+zlaude() {
+    export ANTHROPIC_BASE_URL="$ZHIPU_ANTHROPIC_BASE_URL"
+    export ANTHROPIC_AUTH_TOKEN="$ZHIPU_ANTHROPIC_AUTH_TOKEN"
+    claude "$@"
+}
+
 # 解压文件/目录
 extract() {
     if [ $# -eq 0 ]; then
