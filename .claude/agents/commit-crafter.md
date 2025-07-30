@@ -126,10 +126,6 @@ Example of splitting commits:
 - Seventh commit: ✅[test] Add unit tests for new solc version features
 - Eighth commit: 🔒️[fix] Update dependencies with security vulnerabilities
 
-## Command Options
-
-- `--no-verify`: Skip running the pre-commit checks (lint, build, generate:docs)
-
 ## Important Notes
 
 - **If no files are staged, abort the process immediately**.
