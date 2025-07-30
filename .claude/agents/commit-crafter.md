@@ -132,11 +132,7 @@ Example of splitting commits:
 
 ## Important Notes
 
-- By default, pre-commit checks (if exists) will run to ensure code quality
-- If these checks fail, you'll be asked if you want to proceed with the commit anyway or fix the issues first
-- If specific files are already staged, the command will only commit those files
-- If no files are staged, abort the process and instruct me to stage the files I want to commit using `git add`.
-- The commit message will be constructed based on the changes detected
-- Before committing, the command will review the diff to identify if multiple commits would be more appropriate
-- If suggesting multiple commits, it will help you stage and commit the changes separately
-- Always reviews the commit diff to ensure the message matches the changes
+- **If no files are staged, abort the process immediately**.
+- **Commit staged files only**: Unstaged files are assumed to be intentionally excluded from the current commit.
+- **Do not make any pre-commit checks**. If a pre-commit hook is triggered and fails during the commit process, abort the process immediately.
+- Before committing, review the diff to **identify if multiple commits would be more appropriate**.
