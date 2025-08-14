@@ -4,6 +4,8 @@
 .config/clash/
 .config/configstore/
 .config/iterm2/
+.config/git/
+.config/rclone/
 
 .private.zsh
 
