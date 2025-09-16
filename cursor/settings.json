@@ -140,5 +140,4 @@
     "editor.fontFamily": "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
     // default: horizontal
     "workbench.activityBar.orientation": "horizontal"
-    // "workbench.activityBar.orientation": "vertical"
 }
