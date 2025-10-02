@@ -68,10 +68,11 @@ precmd() {
         rprompt_parts+=("$python_env_str")
     fi
 
-    # 2. 检测 Git 仓库
-    if [[ -n "${vcs_info_msg_0_}" ]]; then
-        rprompt_parts+=("${vcs_info_msg_0_}")
-    fi
+    # # 使用branchless workflow就不需要这个
+    # # 2. 检测 Git 仓库
+    # if [[ -n "${vcs_info_msg_0_}" ]]; then
+    #     rprompt_parts+=("${vcs_info_msg_0_}")
+    # fi
 
     # 3. 添加时间戳 (使用统一的灰色)
     rprompt_parts+=("${RPROMPT_COLOR}${TIME_ICON} %T%f")

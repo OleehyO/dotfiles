@@ -9,10 +9,10 @@
 set_proxy() {
     if [ $# -eq 0 ]; then
         # 使用默认代理地址
-        export http_proxy="http://127.0.0.1:7890"
-        export https_proxy="http://127.0.0.1:7890"
-        export HTTP_PROXY="http://127.0.0.1:7890"
-        export HTTPS_PROXY="http://127.0.0.1:7890"
+        export http_proxy="http://127.0.0.1:7897"
+        export https_proxy="http://127.0.0.1:7897"
+        export HTTP_PROXY="http://127.0.0.1:7897"
+        export HTTPS_PROXY="http://127.0.0.1:7897"
     else
         # 使用用户提供的代理地址
         export http_proxy="$1"

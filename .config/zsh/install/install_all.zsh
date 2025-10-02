@@ -64,6 +64,20 @@ run_install() {
         # 安装成功，手动设置退出代码为0再调用handle_error
         (exit 0)
         handle_error "$step_name"
+
+        # 重新加载环境以确保新安装的工具可以被后续脚本使用
+        [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+        [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
+        [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
+        # 更新 PATH（针对 Homebrew 等）
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+            [ -x /usr/local/bin/brew ] && eval "$(/usr/local/bin/brew shellenv)"
+        fi
+
+        # 刷新 zsh 命令缓存
+        command -v rehash >/dev/null 2>&1 && rehash
     else
         # 手动设置退出代码以便 handle_error 正确处理
         (exit "${install_exit_code:-1}")
@@ -118,6 +132,8 @@ local install_dir="$HOME/dotfiles/.config/zsh/install"
 declare -A INSTALL_STEPS=(
     ["Oh My Zsh"]="$install_dir/install_ohmyzsh.zsh"
     ["tzdata"]="$install_dir/install_tzdata.zsh"
+    ["Git"]="$install_dir/install_git.zsh"
+    ["Cargo"]="$install_dir/install_cargo.zsh"
     ["tmux"]="$install_dir/install_tmux.zsh"
     ["eza"]="$install_dir/install_eza.zsh"
     ["bat"]="$install_dir/install_bat.zsh"
@@ -131,6 +147,7 @@ declare -A INSTALL_STEPS=(
     ["uv"]="$install_dir/install_uv.zsh"
     ["zip"]="$install_dir/install_zip.zsh"
     ["Node.js"]="$install_dir/install_node.zsh"
+    ["git-branchless"]="$install_dir/install_git_branchless.zsh"
     ["Codex CLI"]="$install_dir/install_codex.zsh"
     ["Claude Code"]="$install_dir/install_claude_code.zsh"
 )

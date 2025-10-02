@@ -87,6 +87,7 @@ alias tkss="tmux kill-server"
 alias g="git"
 alias gs="git status --short"
 alias gst="git status"
+alias gsl="git smartlog"
 alias gl="git pull"
 alias gp="git push"
 alias ga="git add"
@@ -96,6 +97,11 @@ alias gb="git branch"
 alias gbd="git branch -d"
 alias gd="git diff"
 alias glog="git log --oneline --graph"
+
+# git-branchless wrapper (if installed)
+if command -v git-branchless >/dev/null 2>&1; then
+    alias git="git-branchless wrap --"
+fi
 
 # =============================================================================
 # 快速操作
