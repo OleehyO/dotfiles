@@ -12,7 +12,7 @@ case $os in
         fi
         ;;
     "ubuntu")
-        if ! command -v z >/dev/null 2>&1; then
+        if ! command -v zoxide >/dev/null 2>&1; then
             echo "Installing z via APT..."
             curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
         else

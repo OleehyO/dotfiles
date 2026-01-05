@@ -180,27 +180,6 @@ search() {
 # 实用工具函数
 # =============================================================================
 
-# 使用moonshot Claude API
-klaude() {
-    export ANTHROPIC_BASE_URL="$MSH_ANTHROPIC_BASE_URL"
-    export ANTHROPIC_AUTH_TOKEN="$MSH_ANTHROPIC_AUTH_TOKEN"
-    claude "$@"
-}
-
-# 使用QWEN Claude API
-qlaude() {
-    export ANTHROPIC_BASE_URL="$QWEN_ANTHROPIC_BASE_URL"
-    export ANTHROPIC_AUTH_TOKEN="$QWEN_ANTHROPIC_AUTH_TOKEN"
-    claude "$@"
-}
-
-# 使用ZHIPU Claude API
-zlaude() {
-    export ANTHROPIC_BASE_URL="$ZHIPU_ANTHROPIC_BASE_URL"
-    export ANTHROPIC_AUTH_TOKEN="$ZHIPU_ANTHROPIC_AUTH_TOKEN"
-    claude "$@"
-}
-
 # 解压文件/目录
 extract() {
     if [ $# -eq 0 ]; then
@@ -284,11 +263,6 @@ compress() {
     fi
 }
 
-# 显示目录大小
-dirsize() {
-    du -sh "${1:-.}" | sort -h
-}
-
 # 快速备份文件
 backup() {
     cp "$1" "$1.backup.$(date +%Y%m%d%H%M%S)"
@@ -297,26 +271,6 @@ backup() {
 # =============================================================================
 # 配置文件编辑
 # =============================================================================
-
-# 编辑主 zsh 配置文件
-editzsh() {
-    $EDITOR "$DOTFILE/.zshrc"
-}
-
-# 编辑别名配置文件
-editaliases() {
-    $EDITOR "$DOTFILE/.config/zsh/aliases.zsh"
-}
-
-# 编辑函数配置文件
-editfunctions() {
-    $EDITOR "$DOTFILE/.config/zsh/functions.zsh"
-}
-
-# 编辑主题配置文件
-edittheme() {
-    $EDITOR "$DOTFILE/.config/zsh/theme.zsh"
-}
 
 # 查看当前定义的别名
 showaliases() {

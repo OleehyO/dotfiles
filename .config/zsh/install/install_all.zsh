@@ -10,6 +10,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
+# 确保 ~/.local/bin 在 PATH 中，以便检测到已安装的工具
+export PATH="$HOME/.local/bin:$PATH"
+
 # 错误计数器
 ERROR_COUNT=0
 FAILED_INSTALLS=()
@@ -126,34 +129,38 @@ else
 fi
 
 # 安装各个工具
-local install_dir="$HOME/dotfiles/.config/zsh/install"
+INSTALL_DIR="$HOME/dotfiles/.config/zsh/install"
 
-# 定义所有安装步骤
-declare -A INSTALL_STEPS=(
-    ["Oh My Zsh"]="$install_dir/install_ohmyzsh.zsh"
-    ["tzdata"]="$install_dir/install_tzdata.zsh"
-    ["Git"]="$install_dir/install_git.zsh"
-    ["Cargo"]="$install_dir/install_cargo.zsh"
-    ["tmux"]="$install_dir/install_tmux.zsh"
-    ["eza"]="$install_dir/install_eza.zsh"
-    ["bat"]="$install_dir/install_bat.zsh"
-    ["z"]="$install_dir/install_z.zsh"
-    ["tldr"]="$install_dir/install_tldr.zsh"
-    ["fzf"]="$install_dir/install_fzf.zsh"
-    ["ripgrep"]="$install_dir/install_ripgrep.zsh"
-    ["fd"]="$install_dir/install_fd.zsh"
-    ["Neovim"]="$install_dir/install_nvim.zsh"
-    ["tpm"]="$install_dir/install_tpm.zsh"
-    ["uv"]="$install_dir/install_uv.zsh"
-    ["zip"]="$install_dir/install_zip.zsh"
-    ["Node.js"]="$install_dir/install_node.zsh"
-    ["git-branchless"]="$install_dir/install_git_branchless.zsh"
-    ["Codex CLI"]="$install_dir/install_codex.zsh"
-    ["Claude Code"]="$install_dir/install_claude_code.zsh"
+# 定义所有安装步骤（使用有序数组保证执行顺序）
+# 格式: "步骤名称:脚本路径"
+INSTALL_STEPS=(
+    "Oh My Zsh:$INSTALL_DIR/install_ohmyzsh.zsh"
+    "tzdata:$INSTALL_DIR/install_tzdata.zsh"
+    "Git:$INSTALL_DIR/install_git.zsh"
+    "Cargo:$INSTALL_DIR/install_cargo.zsh"
+    "tmux:$INSTALL_DIR/install_tmux.zsh"
+    "eza:$INSTALL_DIR/install_eza.zsh"
+    "bat:$INSTALL_DIR/install_bat.zsh"
+    "z:$INSTALL_DIR/install_z.zsh"
+    "tldr:$INSTALL_DIR/install_tldr.zsh"
+    "fzf:$INSTALL_DIR/install_fzf.zsh"
+    "ripgrep:$INSTALL_DIR/install_ripgrep.zsh"
+    "fd:$INSTALL_DIR/install_fd.zsh"
+    "Neovim:$INSTALL_DIR/install_nvim.zsh"
+    "tpm:$INSTALL_DIR/install_tpm.zsh"
+    "uv:$INSTALL_DIR/install_uv.zsh"
+    "zip:$INSTALL_DIR/install_zip.zsh"
+    "Node.js:$INSTALL_DIR/install_node.zsh"
+    "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
+    "Codex CLI:$INSTALL_DIR/install_codex.zsh"
+    "Claude Code:$INSTALL_DIR/install_claude_code.zsh"
+    "ncdu:$INSTALL_DIR/install_ncdu.zsh"
 )
 
-# 执行所有安装步骤
-for step_name script_path in ${(kv)INSTALL_STEPS}; do
+# 执行所有安装步骤（按数组顺序）
+for step in "${INSTALL_STEPS[@]}"; do
+    step_name="${step%%:*}"
+    script_path="${step#*:}"
     run_install "$step_name" "$script_path"
 done
 
@@ -178,3 +185,5 @@ fi
 log_message "Installation process completed at $(date)"
 echo -e "${BLUE}==================================${NC}"
 echo -e "${YELLOW}Please restart your shell or run 'source ~/.zshrc' to apply changes.${NC}"
+
+# End of script

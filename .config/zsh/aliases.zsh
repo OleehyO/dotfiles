@@ -51,7 +51,7 @@ fi
 alias mkdir="mkdir -p"
 alias mv="mv -i"
 alias mvf="mv -f"
-alias cp="cp -i"
+# alias cp="cp -i"
 alias cpf="cp -f"
 
 alias cpf="cp -f"

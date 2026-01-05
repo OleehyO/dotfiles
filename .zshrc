@@ -4,11 +4,6 @@
 # 在vscode terminal中配置font（cmd + ，后搜索font, 加上'JetBrainsMono Nerd Font'）
 # (其他字体可以看https://www.nerdfonts.com/#home)
 
-# MACOS
-# 下载ITEM：https://iterm2.com/index.html
-# item中导入MacItemProfile.json：Item -> settings -> profiles -> other actions -> import json files -> 选中这个配置 -> other actions -> set as default
-# ITEM的其他主题可以参考：https://github.com/mbadolato/iTerm2-Color-Schemes
-
 export SHELL=$(which zsh)
 DOTFILE="${HOME}/dotfiles"
 
@@ -140,7 +135,7 @@ fi
 export TLDR_AUTO_UPDATE_DISABLED=1
 
 # 确保 ~/.local/bin 在 PATH 中
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 
 # =============================================================================
@@ -169,26 +164,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# -- conda --------------------------------------
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-
-__conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
-        . "/opt/conda/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/conda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# <<< conda initialize <<<
-
-# -- 加载私有配置（包含代理设置等不能公开的操作） --------------
+# -- 加载私有配置 --------------
 if [[ -f "$DOTFILE/.private.zsh" ]]; then
     source "$DOTFILE/.private.zsh"
 fi
