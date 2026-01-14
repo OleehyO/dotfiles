@@ -1,5 +1,3 @@
-中文 | [English](README_en.md)
-
 # Dotfiles Configuration
 
 本仓库的目标：能在各种开发机（or 本地机）上无痛地setup起自己熟悉的开发环境，从而获得一致的开发体验
@@ -55,6 +53,7 @@
     > vscode中linux上的默认shell通常为bash，需要`cmd` + `,` 搜索terminal.integrated.defaultProfile.linux，设置为zsh
 
 6. 重新加载终端
+7. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
 
 ## VS Code / Cursor 集成终端设置
 
@@ -90,4 +89,4 @@
 
 ## 常用别名
 
-常用的别名定义在 `.config/zsh/aliases.zsh` 文件中，你可以通过 `showaliases` 函数查看所有别名。
+常用的别名定义在 `.config/zsh/aliases.zsh` 文件中
