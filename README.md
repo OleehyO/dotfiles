@@ -89,4 +89,4 @@
 
 ## 常用别名
 
-常用的别名定义在 `.config/zsh/aliases.zsh` 文件中，你可以通过 `showaliases` 函数查看所有别名。
+常用的别名定义在 `.config/zsh/aliases.zsh` 文件中
