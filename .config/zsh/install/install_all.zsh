@@ -155,6 +155,7 @@ INSTALL_STEPS=(
     "Codex CLI:$INSTALL_DIR/install_codex.zsh"
     "Claude Code:$INSTALL_DIR/install_claude_code.zsh"
     "ncdu:$INSTALL_DIR/install_ncdu.zsh"
+    "rclone:$INSTALL_DIR/install_rclone.zsh"
 )
 
 # 执行所有安装步骤（按数组顺序）
