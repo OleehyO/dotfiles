@@ -165,6 +165,12 @@ for step in "${INSTALL_STEPS[@]}"; do
     run_install "$step_name" "$script_path"
 done
 
+# 安装私有工具（有自己的安装逻辑和交互）
+echo -e "${BLUE}==================================${NC}"
+echo -e "${BLUE}Installing Private Tools...${NC}"
+echo -e "${BLUE}==================================${NC}"
+source "$INSTALL_DIR/install_private.zsh"
+
 # 显示最终结果
 echo -e "${BLUE}==================================${NC}"
 echo -e "${BLUE}Installation Summary${NC}"
