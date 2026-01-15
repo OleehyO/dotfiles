@@ -156,6 +156,8 @@ INSTALL_STEPS=(
     "Claude Code:$INSTALL_DIR/install_claude_code.zsh"
     "ncdu:$INSTALL_DIR/install_ncdu.zsh"
     "rclone:$INSTALL_DIR/install_rclone.zsh"
+    "ty:$INSTALL_DIR/install_ty.zsh"
+    "ruff:$INSTALL_DIR/install_ruff.zsh"
 )
 
 # 执行所有安装步骤（按数组顺序）
