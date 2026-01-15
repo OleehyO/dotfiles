@@ -57,7 +57,7 @@
 
 ## VS Code / Cursor 集成终端设置
 
-* 安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
+安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
 
 如果你使用VS Code的集成终端，请在 `settings.json` 中添加以下配置：
 

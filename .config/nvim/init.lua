@@ -1,6 +1,6 @@
 -- 1. 基础设置
 vim.opt.number = true           -- 显示行号
-vim.opt.relativenumber = true   -- 开启相对行号 (你要求的)
+vim.opt.relativenumber = true   -- 开启相对行号
 vim.opt.cursorline = true       -- 高亮当前行 (CursorLine)
 vim.opt.termguicolors = true    -- 开启真彩色支持
 vim.opt.mouse = ""              -- 禁止鼠标操作
