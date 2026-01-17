@@ -149,6 +149,7 @@ INSTALL_STEPS=(
     "Neovim:$INSTALL_DIR/install_nvim.zsh"
     "tpm:$INSTALL_DIR/install_tpm.zsh"
     "uv:$INSTALL_DIR/install_uv.zsh"
+    "pre-commit:$INSTALL_DIR/install_precommit.zsh"
     "zip:$INSTALL_DIR/install_zip.zsh"
     "Node.js:$INSTALL_DIR/install_node.zsh"
     "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
