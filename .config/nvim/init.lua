@@ -72,5 +72,5 @@ require("lazy").setup({
         paste = { ['+'] = paste, ['*'] = paste },
       }
     end
-},
+  },
 })
