@@ -43,14 +43,12 @@
     ```bash
     cp ~/dotfiles/.zshrc ~/.zshrc
     cp ~/dotfiles/.tmux.conf ~/.tmux.conf
-    cp ~/dotfiles/.condarc ~/.condarc
 
     mkdir ~/.config && cp -r ~/dotfiles/.config/* ~/.config/
+    
+    ln -s ~/dotfiles/cursor/keybindings.json "/Users/moonshot/Library/Application Support/Cursor/User"
+    ln -s ~/dotfiles/cursor/settings.json "/Users/moonshot/Library/Application Support/Cursor/User"
     ```
-
-5. 把zsh设置为默认shell
-
-    > vscode中linux上的默认shell通常为bash，需要`cmd` + `,` 搜索terminal.integrated.defaultProfile.linux，设置为zsh
 
 6. 重新加载终端
 7. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件

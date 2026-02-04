@@ -6,6 +6,10 @@
 .config/iterm2/
 .config/git/
 .config/rclone/
+.config/htop/
+.config/red/
+.config/uv/
+.config/zed/
 
 .private.zsh
 

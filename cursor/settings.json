@@ -16,7 +16,8 @@
     "explorer.confirmDragAndDrop": false,
     "[python]": {
         "editor.wordBasedSuggestions": "off",
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "files.associations": {
         "*.py": "python"
@@ -40,6 +41,7 @@
     "editor.tabCompletion": "off",
     "files.defaultLanguage": "",
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
     "terminal.integrated.allowChords": false,
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "debug.terminal.clearBeforeReusing": true,
@@ -139,5 +141,16 @@
     "terminal.integrated.defaultProfile.linux": "zsh",
     "editor.fontFamily": "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
     // default: horizontal
-    "workbench.activityBar.orientation": "horizontal"
+    "workbench.activityBar.orientation": "horizontal",
+    "gitlens.ai.model": "gitkraken",
+    "makefile.configureOnOpen": false,
+    "gitlens.graph.minimap.enabled": false,
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+    "cursor.general.disableHttp2": true,
+    "anyscalecompute.ray-distributed-debugger.clusterDashboards": [
+        {
+            "host": "127.0.0.1:8265",
+            "localRoot": "${workspaceFolder}"
+        }
+    ]
 }

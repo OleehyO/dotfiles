@@ -54,10 +54,6 @@
         "command": "workbench.debug.action.focusRepl"
     },
     {
-        "key": "cmd+0",
-        "command": "terminal.focus"
-    },
-    {
         "key": "cmd+f12",
         "command": "editor.action.revealDeclaration"
     },
@@ -134,7 +130,32 @@
         "command": "-workbench.action.findInFiles"
     },
     {
-        "key": "cmd+0",
-        "command": "-workbench.action.focusSideBar"
+        "key": "alt+backspace",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalHasBeenCreated || terminalIsOpen || terminalProcessSupported"
+    },
+    {
+        "key": "cmd+`",
+        "command": "terminal.focus"
+    },
+    {
+        "key": "alt+[Backquote]",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    {
+        "key": "ctrl+shift+`",
+        "command": "-workbench.action.terminal.new",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalHasBeenCreated || terminalProcessSupported"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalHasBeenCreated || terminalProcessSupported"
     }
 ]
