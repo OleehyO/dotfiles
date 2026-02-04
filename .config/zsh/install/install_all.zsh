@@ -56,6 +56,13 @@ run_install() {
     echo -e "${BLUE}==================================${NC}"
     log_message "Starting installation of $step_name"
     
+    # 检查并显示代理设置
+    if [[ -n "$http_proxy" || -n "$https_proxy" || -n "$HTTP_PROXY" || -n "$HTTPS_PROXY" ]]; then
+        echo -e "${GREEN}Proxy: ${http_proxy:-$HTTP_PROXY} / ${https_proxy:-$HTTPS_PROXY}${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Warning: No proxy configured (http_proxy/https_proxy not set)${NC}"
+    fi
+    
     # 执行安装脚本并记录输出，正确捕获退出状态
     # 使用临时文件来捕获退出状态
     local temp_exit_file=$(mktemp)
