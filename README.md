@@ -1,22 +1,5 @@
 # Dotfiles Configuration
 
-本仓库的目标：能在各种开发机（or 本地机）上无痛地setup起自己熟悉的开发环境，从而获得一致的开发体验
-
-## 展示
-
-<div align="center">
-  <table style="border: none;">
-    <tr>
-      <td style="border: none;"><img src="assets/demo1.png" alt="Demo 1" width="400"/></td>
-      <td style="border: none;"><img src="assets/demo2.png" alt="Demo 2" width="400"/></td>
-    </tr>
-    <tr>
-      <td align="center" style="border: none;"><em>Screenshot</em></td>
-      <td align="center" style="border: none;"><em>Vim Style</em></td>
-    </tr>
-  </table>
-</div>
-
 ## 安装
 
 1. 安装zsh shell
