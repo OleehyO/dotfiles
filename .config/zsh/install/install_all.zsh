@@ -147,6 +147,7 @@ INSTALL_STEPS=(
     "Git:$INSTALL_DIR/install_git.zsh"
     "LLVM:$INSTALL_DIR/install_llvm.zsh"
     "Cargo:$INSTALL_DIR/install_cargo.zsh"
+    "git-delta:$INSTALL_DIR/install_git_delta.zsh"
     "eza:$INSTALL_DIR/install_eza.zsh"
     "tmux:$INSTALL_DIR/install_tmux.zsh"
     "bat:$INSTALL_DIR/install_bat.zsh"
