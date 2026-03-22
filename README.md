@@ -24,13 +24,14 @@
     > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
 
     ```bash
-    cp ~/dotfiles/.zshrc ~/.zshrc
-    cp ~/dotfiles/.tmux.conf ~/.tmux.conf
+    rm ~/.zshrc && ln -s /dotfiles/.zshrc ~
+    ln -s ~/dotfiles/.tmux.conf ~
 
-    mkdir ~/.config && cp -r ~/dotfiles/.config/* ~/.config/
+    rm -rf ~/.config && ln -s ~/dotfiles/.config ~
     
-    ln -s ~/dotfiles/cursor/keybindings.json "/Users/moonshot/Library/Application Support/Cursor/User"
-    ln -s ~/dotfiles/cursor/settings.json "/Users/moonshot/Library/Application Support/Cursor/User"
+    rm "~/Library/Application Support/Cursor/User/keybindings.json" && ln -s ~/dotfiles/cursor/keybindings.json "~/Library/Application Support/Cursor/User"
+
+    rm "~/Library/Application Support/Cursor/User/settings.json" && ln -s ~/dotfiles/cursor/settings.json "~/Library/Application Support/Cursor/User"
     ```
 
 6. 重新加载终端

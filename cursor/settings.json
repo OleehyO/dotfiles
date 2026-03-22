@@ -126,7 +126,10 @@
     "dotnetAcquisitionExtension.existingDotnetPath": [],
     "dotnetAcquisitionExtension.installTimeoutValue": 6000,
     "cursor.cpp.disabledLanguages": [
-        "cpp"
+        "plaintext",
+        "markdown",
+        "scminput",
+        "csharp"
     ],
     "svg.preview.mode": "svg",
     "githubPullRequests.pullBranch": "never",
@@ -145,12 +148,15 @@
     "gitlens.ai.model": "gitkraken",
     "makefile.configureOnOpen": false,
     "gitlens.graph.minimap.enabled": false,
-    "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash",
     "cursor.general.disableHttp2": true,
     "anyscalecompute.ray-distributed-debugger.clusterDashboards": [
         {
             "host": "127.0.0.1:8265",
             "localRoot": "${workspaceFolder}"
         }
-    ]
+    ],
+    "gitlens.launchpad.indicator.enabled": false,
+    "claudeCode.preferredLocation": "panel",
+    "gitlens.graph.onlyFollowFirstParent": true
 }
