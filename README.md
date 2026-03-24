@@ -24,15 +24,15 @@
     > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
 
     ```bash
-    rm ~/.zshrc && ln -s /dotfiles/.zshrc ~
+    rm ~/.zshrc && cp ~/dotfiles/.zshrc ~
+    rm ~/.bashrc && cp ~/dotfiles/.bashrc ~
     ln -s ~/dotfiles/.tmux.conf ~
 
     rm -rf ~/.config && ln -s ~/dotfiles/.config ~
-    
-    rm "~/Library/Application Support/Cursor/User/keybindings.json" && ln -s ~/dotfiles/cursor/keybindings.json "~/Library/Application Support/Cursor/User"
-
-    rm "~/Library/Application Support/Cursor/User/settings.json" && ln -s ~/dotfiles/cursor/settings.json "~/Library/Application Support/Cursor/User"
     ```
+    <!-- rm "~/Library/Application Support/Cursor/User/keybindings.json" && ln -s ~/dotfiles/cursor/keybindings.json "~/Library/Application Support/Cursor/User"
+
+    rm "~/Library/Application Support/Cursor/User/settings.json" && ln -s ~/dotfiles/cursor/settings.json "~/Library/Application Support/Cursor/User" -->
 
 6. 重新加载终端
 7. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
