@@ -169,7 +169,6 @@ INSTALL_STEPS=(
     "rclone:$INSTALL_DIR/install_rclone.zsh"
     "ty:$INSTALL_DIR/install_ty.zsh"
     "ruff:$INSTALL_DIR/install_ruff.zsh"
-    "Kimi CLI:$INSTALL_DIR/install_kimi.zsh"
 )
 
 # 执行所有安装步骤（按数组顺序）
