@@ -4,6 +4,9 @@
 # 在vscode terminal中配置font（cmd + ，后搜索font, 加上'JetBrainsMono Nerd Font'）
 # (其他字体可以看https://www.nerdfonts.com/#home)
 
+#设置SHELL为zsh：
+# sudo chsh -s /bin/zsh lihaoyang
+
 export SHELL=$(which zsh)
 DOTFILE="${HOME}/dotfiles"
 
