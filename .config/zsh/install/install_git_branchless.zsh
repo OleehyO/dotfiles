@@ -76,6 +76,16 @@ if command -v git-branchless >/dev/null 2>&1; then
     echo "  git branchless init"
     echo ""
     echo "An alias 'git=git-branchless wrap --' has been added to aliases.zsh"
+
+    # 配置 git fixup alias：从顶端把改动 fixup 进目标 commit 并 restack
+    # 原理：GIT_SEQUENCE_EDITOR=true 使 rebase -i 变为非交互式自动执行
+    echo ""
+    echo "Configuring 'git fixup' alias..."
+    git config --global alias.fixup '!sh -c '"'"'REV=$(git rev-parse $1) && git commit --fixup $@ && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $REV^ && git restack'"'"' -'
+
+    # 关闭 branchless 导航命令自动切换分支：next/prev/checkout 等只移动 HEAD，保持 branchless 工作流
+    echo "Disabling branchless.navigation.autoSwitchBranches..."
+    git config --global branchless.navigation.autoSwitchBranches false
 else
     echo "Error: git-branchless installation failed"
     return 1
