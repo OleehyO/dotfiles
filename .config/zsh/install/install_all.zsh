@@ -165,6 +165,7 @@ INSTALL_STEPS=(
     "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
     "Codex CLI:$INSTALL_DIR/install_codex.zsh"
     "Claude Code:$INSTALL_DIR/install_claude_code.zsh"
+    "Lark CLI:$INSTALL_DIR/install_lark_cli.zsh"
     "ncdu:$INSTALL_DIR/install_ncdu.zsh"
     "rclone:$INSTALL_DIR/install_rclone.zsh"
     "ty:$INSTALL_DIR/install_ty.zsh"
