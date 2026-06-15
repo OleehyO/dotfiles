@@ -13,13 +13,13 @@ echo -e "${BLUE}Installing pre-commit...${NC}"
 if command -v pre-commit &> /dev/null; then
     echo -e "${GREEN}pre-commit is already installed.${NC}"
     pre-commit --version
-    exit 0
+    return 0
 fi
 
 # 确保 uv 已安装
 if ! command -v uv &> /dev/null; then
     echo -e "${RED}uv is not installed. Please install uv first.${NC}"
-    exit 1
+    return 1
 fi
 
 # 使用 uv 安装 pre-commit
@@ -30,7 +30,8 @@ uv tool install pre-commit
 if command -v pre-commit &> /dev/null; then
     echo -e "${GREEN}✅ pre-commit installed successfully!${NC}"
     pre-commit --version
+    return 0
 else
     echo -e "${RED}❌ Failed to install pre-commit${NC}"
-    exit 1
+    return 1
 fi

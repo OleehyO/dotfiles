@@ -8,14 +8,15 @@ if command -v uv &> /dev/null; then
     uv tool install ty
 else
     echo "uv not found. Please install uv first."
-    exit 1
+    return 1
 fi
 
 # Verify installation
 if command -v ty &> /dev/null; then
     echo "ty installed successfully!"
     ty --version
+    return 0
 else
     echo "Failed to install ty"
-    exit 1
+    return 1
 fi
