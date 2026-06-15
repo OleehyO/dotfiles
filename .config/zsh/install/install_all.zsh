@@ -165,6 +165,7 @@ INSTALL_STEPS=(
     "pre-commit:$INSTALL_DIR/install_precommit.zsh"
     "zip:$INSTALL_DIR/install_zip.zsh"
     "Node.js:$INSTALL_DIR/install_node.zsh"
+    "fnm:$INSTALL_DIR/install_fnm.zsh"
     "pm2:$INSTALL_DIR/install_pm2.zsh"
     "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
     "Codex CLI:$INSTALL_DIR/install_codex.zsh"
