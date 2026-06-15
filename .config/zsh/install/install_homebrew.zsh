@@ -7,9 +7,36 @@ YELLOW='\033[1;33m'
 BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
+find_brew() {
+    if command -v brew >/dev/null 2>&1; then
+        command -v brew
+        return 0
+    fi
+
+    for brew_path in \
+        /opt/homebrew/bin/brew \
+        /usr/local/bin/brew \
+        /home/linuxbrew/.linuxbrew/bin/brew
+    do
+        if [[ -x "$brew_path" ]]; then
+            echo "$brew_path"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+load_brew_env() {
+    local brew_path="$1"
+    eval "$("$brew_path" shellenv)"
+}
+
 # 检查是否已经安装有brew
-if command -v brew &> /dev/null; then
-    echo -e "${GREEN}✅ Homebrew 已经安装在 $(which brew)${NC}"
+local existing_brew=$(find_brew)
+if [[ -n "$existing_brew" ]]; then
+    load_brew_env "$existing_brew"
+    echo -e "${GREEN}✅ Homebrew 已经安装在 $existing_brew${NC}"
 
     # 检查是否需要更新
     echo -e "${BLUE}正在检查 Homebrew 更新...${NC}"
@@ -21,24 +48,35 @@ if command -v brew &> /dev/null; then
         echo -e "${YELLOW}⚠️  更新 Homebrew 时出现问题${NC}"
     fi
 
-    exit 0
-fi
-
-# 检查是否在macOS上运行
-if [[ "$OSTYPE" != "darwin"* ]]; then
-    echo -e "${YELLOW}⚠️  当前系统不是macOS，跳过Homebrew安装${NC}"
-    echo -e "${YELLOW}   如果是Linux系统，请考虑使用Linuxbrew或其他包管理器${NC}"
-    exit 0
+    return 0
 fi
 
 echo -e "${BLUE}正在安装Homebrew...${NC}"
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if command -v apt >/dev/null 2>&1; then
+        echo -e "${BLUE}正在安装 Homebrew Linux 依赖...${NC}"
+        sudo apt install -y build-essential procps curl file git
+        if [[ $? -ne 0 ]]; then
+            echo -e "${RED}❌ Homebrew Linux 依赖安装失败${NC}"
+            return 1
+        fi
+    else
+        echo -e "${YELLOW}⚠️  未检测到 apt，请确认已安装 build tools、procps、curl、file 和 git${NC}"
+    fi
+elif [[ "$OSTYPE" != "darwin"* ]]; then
+    echo -e "${RED}❌ Unsupported OS for Homebrew installation: $OSTYPE${NC}"
+    return 1
+fi
 
 # 使用官方安装脚本安装Homebrew
 if /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; then
     echo -e "${GREEN}✅ Homebrew 安装成功${NC}"
 
     # 根据系统架构设置正确的路径
-    if [[ "$(uname -m)" == "arm64" ]]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    elif [[ "$(uname -m)" == "arm64" ]]; then
         # Apple Silicon Macs
         HOMEBREW_PREFIX="/opt/homebrew"
     else
@@ -49,7 +87,7 @@ if /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install
     # 检查brew命令是否可用
     if [ -f "${HOMEBREW_PREFIX}/bin/brew" ]; then
         # 添加到当前shell的环境变量
-        eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
+        load_brew_env "${HOMEBREW_PREFIX}/bin/brew"
 
         echo -e "${GREEN}✅ Homebrew 已添加到当前会话的环境变量${NC}"
         echo -e "${BLUE}Homebrew 安装位置: ${HOMEBREW_PREFIX}/bin/brew${NC}"
@@ -75,13 +113,15 @@ if /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install
         else
             echo -e "${RED}❌ 安装似乎成功了，但brew命令不可用${NC}"
             echo -e "${YELLOW}请确保手动将Homebrew添加到您的PATH环境变量${NC}"
-            exit 1
+            return 1
         fi
     else
         echo -e "${RED}❌ Homebrew 安装失败：找不到brew命令${NC}"
-        exit 1
+        return 1
     fi
 else
     echo -e "${RED}❌ Homebrew 安装失败${NC}"
-    exit 1
+    return 1
 fi
+
+return 0
