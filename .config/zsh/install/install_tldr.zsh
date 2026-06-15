@@ -13,8 +13,8 @@ case $os in
         ;;
     "ubuntu")
         if ! command -v tldr >/dev/null 2>&1; then
-            echo "Installing tldr via snap..."
-            sudo snap install tldr
+            echo "Installing tldr via APT..."
+            sudo apt install -y tldr
         else
             echo "tldr is already installed"
             return 0
@@ -24,4 +24,4 @@ case $os in
         echo "Unsupported OS for tldr installation: $os"
         return 1
         ;;
-esac 
+esac
