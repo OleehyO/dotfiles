@@ -141,6 +141,7 @@ INSTALL_DIR="$HOME/dotfiles/.config/zsh/install"
 # 定义所有安装步骤（使用有序数组保证执行顺序）
 # 格式: "步骤名称:脚本路径"
 INSTALL_STEPS=(
+    "zsh:$INSTALL_DIR/install_zsh.zsh"
     "Oh My Zsh:$INSTALL_DIR/install_ohmyzsh.zsh"
     "Homebrew:$INSTALL_DIR/install_homebrew.zsh"
     "tzdata:$INSTALL_DIR/install_tzdata.zsh"
