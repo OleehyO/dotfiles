@@ -77,7 +77,6 @@ run_install() {
 
         # 重新加载环境以确保新安装的工具可以被后续脚本使用
         [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-        [ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh"
         [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
         # 更新 PATH（针对 Homebrew 等）
@@ -87,6 +86,8 @@ run_install() {
         elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
             [ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         fi
+
+        command -v fnm >/dev/null 2>&1 && eval "$(fnm env --shell zsh)"
 
         # 刷新 zsh 命令缓存
         command -v rehash >/dev/null 2>&1 && rehash
@@ -164,7 +165,6 @@ INSTALL_STEPS=(
     "uv:$INSTALL_DIR/install_uv.zsh"
     "pre-commit:$INSTALL_DIR/install_precommit.zsh"
     "zip:$INSTALL_DIR/install_zip.zsh"
-    "Node.js:$INSTALL_DIR/install_node.zsh"
     "fnm:$INSTALL_DIR/install_fnm.zsh"
     "pm2:$INSTALL_DIR/install_pm2.zsh"
     "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
