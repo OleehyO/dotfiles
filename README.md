@@ -30,6 +30,20 @@
 5. 重新加载终端
 6. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
 
+## 私有配置
+
+`private/` 里的文件在仓库中只保留占位版本。本机写入真实配置后，用
+`skip-worktree` 防止误把本地私有内容加入后续提交：
+
+```bash
+git update-index --skip-worktree \
+  private/.aws.config \
+  private/megfile.conf \
+  private/rclone.conf \
+  private/private_deps.zsh \
+  private/private_zsh_config.zsh
+```
+
 ## VS Code 集成终端设置
 
 安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
