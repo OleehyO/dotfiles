@@ -1,4 +1,4 @@
-# ~/.config/zsh/functions.zsh
+# ~/dotfiles/zsh/functions.zsh
 # ZSH 实用函数配置
 
 # =============================================================================
@@ -274,7 +274,7 @@ backup() {
 
 # 查看当前定义的别名
 showaliases() {
-    local aliases_file="$DOTFILE/.config/zsh/aliases.zsh"
+    local aliases_file="$DOTFILE/zsh/aliases.zsh"
     
     if [[ ! -f "$aliases_file" ]]; then
         echo "Error: aliases.zsh file not found at $aliases_file"
@@ -298,4 +298,4 @@ showaliases() {
 reload() {
     source ~/.zshrc
     echo "ZSH configuration reloaded!"
-} 
+}

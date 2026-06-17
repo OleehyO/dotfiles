@@ -11,7 +11,7 @@ fi
 # Ensure Git version >= 2.29
 if ! command -v git >/dev/null 2>&1; then
     echo "Git is not installed. Installing Git first..."
-    source "$DOTFILE/.config/zsh/install/install_git.zsh" || {
+    source "$DOTFILE/zsh/install/install_git.zsh" || {
         echo "Error: Failed to install Git"
         return 1
     }
@@ -22,7 +22,7 @@ else
 
     if [ "$major" -lt 2 ] || ([ "$major" -eq 2 ] && [ "$minor" -lt 29 ]); then
         echo "Git version $git_version is too old. Upgrading Git first..."
-        source "$DOTFILE/.config/zsh/install/install_git.zsh" || {
+        source "$DOTFILE/zsh/install/install_git.zsh" || {
             echo "Error: Failed to upgrade Git"
             return 1
         }
@@ -40,7 +40,7 @@ case $os in
         # Ensure Cargo is installed
         if ! command -v cargo >/dev/null 2>&1; then
             echo "Cargo is not installed. Installing Cargo first..."
-            source "$DOTFILE/.config/zsh/install/install_cargo.zsh" || {
+            source "$DOTFILE/zsh/install/install_cargo.zsh" || {
                 echo "Error: Failed to install Cargo"
                 return 1
             }

@@ -1,4 +1,4 @@
-# ~/.config/zsh/theme.zsh
+# ~/dotfiles/zsh/theme.zsh
 # ZSH 主题和 Prompt 配置
 
 # 启用颜色支持

@@ -22,7 +22,7 @@ alias vi="$VISUAL"
 
 
 # -- 加载别名配置和函数配置 --------------------------------
-source "${DOTFILE}/.config/zsh/functions.zsh"
+source "${DOTFILE}/zsh/functions.zsh"
 
 
 # =============================================================================
@@ -66,9 +66,9 @@ zvm_after_init_commands+=(
 # 加载oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 # 加载主题配置
-source "${DOTFILE}/.config/zsh/theme.zsh"
+source "${DOTFILE}/zsh/theme.zsh"
 # 加载别名
-source "${DOTFILE}/.config/zsh/aliases.zsh"
+source "${DOTFILE}/zsh/aliases.zsh"
 
 
 # =============================================================================

@@ -15,27 +15,33 @@
     ```bash
     zsh  # 进入zsh shell
 
-    source ~/dotfiles/.config/zsh/install/install_all.zsh
+    source ~/dotfiles/zsh/install/install_all.zsh
     ```
 
-    > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./.config/zsh/install/)
+    > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./zsh/install/)
 
 4. 创建软链接 & 拷贝文件
-    > 记得提前备份好之前的.zshrc, .tmux.conf, .condarc, .config/
+    > 记得提前备份好之前的 `.zshrc`, `.tmux.conf`, `.condarc`, `.config/nvim`, `.aws/config` 等配置。
 
     ```bash
-    rm ~/.zshrc && cp ~/dotfiles/.zshrc ~
-    rm ~/.bashrc && cp ~/dotfiles/.bashrc ~
-    ln -s ~/dotfiles/.tmux.conf ~
+    rm -f ~/.zshrc ~/.bashrc ~/.tmux.conf ~/.condarc
+    cp ~/dotfiles/.zshrc ~
+    cp ~/dotfiles/.bashrc ~
+    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/.condarc ~/.condarc
 
-    rm -rf ~/.config && ln -s ~/dotfiles/.config ~
+    mkdir -p ~/.config
+    rm -rf ~/.config/nvim
+    ln -s ~/dotfiles/.config/nvim ~/.config/nvim
+
+    sh ~/dotfiles/.config.private/setup.sh
     ```
     <!-- rm "~/Library/Application Support/Cursor/User/keybindings.json" && ln -s ~/dotfiles/cursor/keybindings.json "~/Library/Application Support/Cursor/User"
 
     rm "~/Library/Application Support/Cursor/User/settings.json" && ln -s ~/dotfiles/cursor/settings.json "~/Library/Application Support/Cursor/User" -->
 
-6. 重新加载终端
-7. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
+5. 重新加载终端
+6. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
 
 ## VS Code / Cursor 集成终端设置
 
@@ -53,7 +59,7 @@
 
 ## 实用函数
 
-所有函数定义在 `.config/zsh/functions.zsh` 文件中。
+所有函数定义在 `zsh/functions.zsh` 文件中。
 
 | 函数 | 描述 |
 | :--- | :--- |
@@ -71,4 +77,4 @@
 
 ## 常用别名
 
-常用的别名定义在 `.config/zsh/aliases.zsh` 文件中
+常用的别名定义在 `zsh/aliases.zsh` 文件中
