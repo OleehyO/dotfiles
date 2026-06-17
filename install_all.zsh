@@ -95,32 +95,8 @@ run_install() {
         # 手动设置退出代码以便 handle_error 正确处理
         (exit "${install_exit_code:-1}")
         handle_error "$step_name"
-        echo -e "${YELLOW}Options:${NC}"
-        echo -e "${YELLOW}  r) Retry this installation${NC}"
-        echo -e "${YELLOW}  s) Skip and continue${NC}"
-        echo -e "${YELLOW}  q) Quit installation${NC}"
-        echo -e "${YELLOW}Choose (r/s/q): ${NC}"
-        read choice
-        case $choice in
-            r|R)
-                echo -e "${BLUE}Retrying $step_name...${NC}"
-                run_install "$step_name" "$script_path"
-                return
-                ;;
-            q|Q)
-                echo -e "${RED}Installation aborted by user${NC}"
-                log_message "Installation aborted by user"
-                exit 1
-                ;;
-            *)
-                echo -e "${YELLOW}Skipping $step_name and continuing...${NC}"
-                log_message "Skipped $step_name"
-                ;;
-        esac
-
-        echo -e "${YELLOW}Press Enter to continue...${NC}"
-        read
-        clear
+        echo -e "${YELLOW}Skipping $step_name and continuing...${NC}"
+        log_message "Skipped $step_name after failure"
     fi
 }
 
