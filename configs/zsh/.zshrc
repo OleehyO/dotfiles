@@ -22,7 +22,7 @@ alias vi="$VISUAL"
 
 
 # -- 加载别名配置和函数配置 --------------------------------
-source "${DOTFILE}/zsh/functions.zsh"
+source "${DOTFILE}/configs/zsh/functions.zsh"
 
 
 # =============================================================================
@@ -66,9 +66,9 @@ zvm_after_init_commands+=(
 # 加载oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 # 加载主题配置
-source "${DOTFILE}/zsh/theme.zsh"
+source "${DOTFILE}/configs/zsh/theme.zsh"
 # 加载别名
-source "${DOTFILE}/zsh/aliases.zsh"
+source "${DOTFILE}/configs/zsh/aliases.zsh"
 
 
 # =============================================================================
@@ -166,6 +166,6 @@ setopt INC_APPEND_HISTORY
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd --shell zsh)"
 
 # -- 加载私有配置 --------------
-if [[ -f "$DOTFILE/.private.zsh" ]]; then
-    source "$DOTFILE/.private.zsh"
+if [[ -f "$DOTFILE/private/private_zsh_config.zsh" ]]; then
+    source "$DOTFILE/private/private_zsh_config.zsh"
 fi

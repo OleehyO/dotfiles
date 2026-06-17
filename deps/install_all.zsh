@@ -124,10 +124,12 @@ run_install() {
     clear
 }
 
+DOTFILE="${DOTFILE:-$HOME/dotfiles}"
+
+source "$DOTFILE/configs/zsh/functions.zsh"
+
 echo -e "${RED}Starting initial setup for $(detect_os)...${NC}"
 echo -e "${BLUE}Log file: $LOG_FILE${NC}"
-
-source ~/dotfiles/zsh/functions.zsh
 
 # 首先更新包管理器
 echo -e "${BLUE}Updating package manager...${NC}"
@@ -139,7 +141,7 @@ else
 fi
 
 # 安装各个工具
-INSTALL_DIR="$HOME/dotfiles/zsh/install"
+INSTALL_DIR="$DOTFILE/deps"
 
 # 定义所有安装步骤（使用有序数组保证执行顺序）
 # 格式: "步骤名称:脚本路径"
@@ -189,7 +191,7 @@ done
 echo -e "${BLUE}==================================${NC}"
 echo -e "${BLUE}Installing Private Tools...${NC}"
 echo -e "${BLUE}==================================${NC}"
-source "$INSTALL_DIR/install_private.zsh"
+source "$DOTFILE/private/private_deps.zsh"
 
 # 显示最终结果
 echo -e "${BLUE}==================================${NC}"

@@ -1,4 +1,4 @@
-# ~/dotfiles/zsh/aliases.zsh
+# ~/dotfiles/configs/zsh/aliases.zsh
 # ZSH 别名配置
 
 # =============================================================================

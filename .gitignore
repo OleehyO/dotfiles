@@ -1,18 +1,5 @@
 .DS_Store
 
-.config/clash/
-.config/configstore/
-.config/iterm2/
-.config/git/
-.config/rclone/
-.config/htop/
-.config/red/
-.config/uv/
-.config/zed/
-.config/gh/
-
-.private.zsh
-
 **/*.log
 **/*.backup*
 **/__pycache__

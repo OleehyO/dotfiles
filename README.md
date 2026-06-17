@@ -15,35 +15,22 @@
     ```bash
     zsh  # 进入zsh shell
 
-    source ~/dotfiles/zsh/install/install_all.zsh
+    source ~/dotfiles/deps/install_all.zsh
     ```
 
-    > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[install/目录](./zsh/install/)
+    > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[deps/目录](./deps/)
 
-4. 创建软链接 & 拷贝文件
-    > 记得提前备份好之前的 `.zshrc`, `.tmux.conf`, `.condarc`, `.config/nvim`, `.aws/config` 等配置。
+4. 创建软链接
+    > `setup.sh` 会把已有的非软链接配置原地备份为 `*.backup.YYYYMMDDHHMMSS`，再创建新的软链接。
 
     ```bash
-    rm -f ~/.zshrc ~/.bashrc ~/.tmux.conf ~/.condarc
-    cp ~/dotfiles/.zshrc ~
-    cp ~/dotfiles/.bashrc ~
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/.condarc ~/.condarc
-
-    mkdir -p ~/.config
-    rm -rf ~/.config/nvim
-    ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-
-    sh ~/dotfiles/.config.private/setup.sh
+    sh ~/dotfiles/setup.sh
     ```
-    <!-- rm "~/Library/Application Support/Cursor/User/keybindings.json" && ln -s ~/dotfiles/cursor/keybindings.json "~/Library/Application Support/Cursor/User"
-
-    rm "~/Library/Application Support/Cursor/User/settings.json" && ln -s ~/dotfiles/cursor/settings.json "~/Library/Application Support/Cursor/User" -->
 
 5. 重新加载终端
 6. 进入tmux，<`ctrl`+`a`> + `I`，下载tmux插件
 
-## VS Code / Cursor 集成终端设置
+## VS Code 集成终端设置
 
 安装 Nerd Font 字体：推荐使用 [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)。
 
@@ -59,7 +46,7 @@
 
 ## 实用函数
 
-所有函数定义在 `zsh/functions.zsh` 文件中。
+所有函数定义在 `configs/zsh/functions.zsh` 文件中。
 
 | 函数 | 描述 |
 | :--- | :--- |
@@ -77,4 +64,4 @@
 
 ## 常用别名
 
-常用的别名定义在 `zsh/aliases.zsh` 文件中
+常用的别名定义在 `configs/zsh/aliases.zsh` 文件中
