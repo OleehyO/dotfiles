@@ -15,7 +15,7 @@
     ```bash
     zsh  # 进入zsh shell
 
-    source ~/dotfiles/deps/install_all.zsh
+    source ~/dotfiles/install_all.zsh
     ```
 
     > 如果安装过程中有某些依赖错误，建议手动进行安装，可以参考[deps/目录](./deps/)

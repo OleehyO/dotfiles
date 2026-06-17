@@ -54,16 +54,9 @@ fi
 echo -e "${BLUE}正在安装Homebrew...${NC}"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if command -v apt >/dev/null 2>&1; then
-        echo -e "${BLUE}正在安装 Homebrew Linux 依赖...${NC}"
-        sudo apt install -y build-essential procps curl file git
-        if [[ $? -ne 0 ]]; then
-            echo -e "${RED}❌ Homebrew Linux 依赖安装失败${NC}"
-            return 1
-        fi
-    else
-        echo -e "${YELLOW}⚠️  未检测到 apt，请确认已安装 build tools、procps、curl、file 和 git${NC}"
-    fi
+    echo -e "${YELLOW}⚠️  Linux 上不自动安装 Homebrew，避免 sudo 和 /home/linuxbrew/.linuxbrew 权限问题${NC}"
+    echo -e "${YELLOW}如确实需要，请按 https://docs.brew.sh/Homebrew-on-Linux 手动安装${NC}"
+    return 0
 elif [[ "$OSTYPE" != "darwin"* ]]; then
     echo -e "${RED}❌ Unsupported OS for Homebrew installation: $OSTYPE${NC}"
     return 1

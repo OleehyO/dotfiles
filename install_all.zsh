@@ -117,11 +117,11 @@ run_install() {
                 log_message "Skipped $step_name"
                 ;;
         esac
+
+        echo -e "${YELLOW}Press Enter to continue...${NC}"
+        read
+        clear
     fi
-    
-    echo -e "${YELLOW}Press Enter to continue...${NC}"
-    read
-    clear
 }
 
 DOTFILE="${DOTFILE:-$HOME/dotfiles}"
@@ -146,38 +146,38 @@ INSTALL_DIR="$DOTFILE/deps"
 # 定义所有安装步骤（使用有序数组保证执行顺序）
 # 格式: "步骤名称:脚本路径"
 INSTALL_STEPS=(
-    "zsh:$INSTALL_DIR/install_zsh.zsh"
-    "Oh My Zsh:$INSTALL_DIR/install_ohmyzsh.zsh"
-    "Homebrew:$INSTALL_DIR/install_homebrew.zsh"
-    "tzdata:$INSTALL_DIR/install_tzdata.zsh"
-    "Git:$INSTALL_DIR/install_git.zsh"
-    "LLVM:$INSTALL_DIR/install_llvm.zsh"
-    "Cargo:$INSTALL_DIR/install_cargo.zsh"
-    "git-delta:$INSTALL_DIR/install_git_delta.zsh"
-    "eza:$INSTALL_DIR/install_eza.zsh"
-    "tmux:$INSTALL_DIR/install_tmux.zsh"
-    "bat:$INSTALL_DIR/install_bat.zsh"
-    "z:$INSTALL_DIR/install_z.zsh"
-    "tldr:$INSTALL_DIR/install_tldr.zsh"
-    "fzf:$INSTALL_DIR/install_fzf.zsh"
-    "ripgrep:$INSTALL_DIR/install_ripgrep.zsh"
-    "fd:$INSTALL_DIR/install_fd.zsh"
-    "Neovim:$INSTALL_DIR/install_nvim.zsh"
-    "tpm:$INSTALL_DIR/install_tpm.zsh"
-    "uv:$INSTALL_DIR/install_uv.zsh"
-    "pre-commit:$INSTALL_DIR/install_precommit.zsh"
-    "zip:$INSTALL_DIR/install_zip.zsh"
-    "fnm:$INSTALL_DIR/install_fnm.zsh"
-    "pm2:$INSTALL_DIR/install_pm2.zsh"
-    "git-branchless:$INSTALL_DIR/install_git_branchless.zsh"
-    "Codex CLI:$INSTALL_DIR/install_codex.zsh"
-    "Claude Code:$INSTALL_DIR/install_claude_code.zsh"
-    "Kimi Code:$INSTALL_DIR/install_kimi_code.zsh"
-    "Lark CLI:$INSTALL_DIR/install_lark_cli.zsh"
-    "ncdu:$INSTALL_DIR/install_ncdu.zsh"
-    "rclone:$INSTALL_DIR/install_rclone.zsh"
-    "ty:$INSTALL_DIR/install_ty.zsh"
-    "ruff:$INSTALL_DIR/install_ruff.zsh"
+    "zsh:$INSTALL_DIR/zsh.zsh"
+    "Oh My Zsh:$INSTALL_DIR/ohmyzsh.zsh"
+    "Homebrew:$INSTALL_DIR/homebrew.zsh"
+    "tzdata:$INSTALL_DIR/tzdata.zsh"
+    "Git:$INSTALL_DIR/git.zsh"
+    "LLVM:$INSTALL_DIR/llvm.zsh"
+    "Cargo:$INSTALL_DIR/cargo.zsh"
+    "git-delta:$INSTALL_DIR/git_delta.zsh"
+    "eza:$INSTALL_DIR/eza.zsh"
+    "tmux:$INSTALL_DIR/tmux.zsh"
+    "bat:$INSTALL_DIR/bat.zsh"
+    "z:$INSTALL_DIR/z.zsh"
+    "tldr:$INSTALL_DIR/tldr.zsh"
+    "fzf:$INSTALL_DIR/fzf.zsh"
+    "ripgrep:$INSTALL_DIR/ripgrep.zsh"
+    "fd:$INSTALL_DIR/fd.zsh"
+    "Neovim:$INSTALL_DIR/nvim.zsh"
+    "tpm:$INSTALL_DIR/tpm.zsh"
+    "uv:$INSTALL_DIR/uv.zsh"
+    "pre-commit:$INSTALL_DIR/precommit.zsh"
+    "zip:$INSTALL_DIR/zip.zsh"
+    "fnm:$INSTALL_DIR/fnm.zsh"
+    "pm2:$INSTALL_DIR/pm2.zsh"
+    "git-branchless:$INSTALL_DIR/git_branchless.zsh"
+    "Codex CLI:$INSTALL_DIR/codex.zsh"
+    "Claude Code:$INSTALL_DIR/claude_code.zsh"
+    "Kimi Code:$INSTALL_DIR/kimi_code.zsh"
+    "Lark CLI:$INSTALL_DIR/lark_cli.zsh"
+    "ncdu:$INSTALL_DIR/ncdu.zsh"
+    "rclone:$INSTALL_DIR/rclone.zsh"
+    "ty:$INSTALL_DIR/ty.zsh"
+    "ruff:$INSTALL_DIR/ruff.zsh"
 )
 
 # 执行所有安装步骤（按数组顺序）

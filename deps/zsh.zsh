@@ -15,7 +15,10 @@ case $os in
         ;;
     "ubuntu")
         echo "Installing zsh via APT..."
-        sudo apt install -y zsh
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            -o 'Dpkg::Options::=--force-confdef' \
+            -o 'Dpkg::Options::=--force-confold' \
+            zsh
         ;;
     *)
         echo "Unsupported OS for zsh installation: $os"
