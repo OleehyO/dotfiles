@@ -127,6 +127,7 @@ INSTALL_STEPS=(
     "Homebrew:$INSTALL_DIR/homebrew.zsh"
     "tzdata:$INSTALL_DIR/tzdata.zsh"
     "Git:$INSTALL_DIR/git.zsh"
+    "GitLab CLI:$INSTALL_DIR/glab.zsh"
     "LLVM:$INSTALL_DIR/llvm.zsh"
     "Cargo:$INSTALL_DIR/cargo.zsh"
     "git-delta:$INSTALL_DIR/git_delta.zsh"
