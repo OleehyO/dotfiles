@@ -65,11 +65,6 @@ alias du1="du -h -d 1 | sort -h"
 alias free="free -h"
 alias ports="netstat -tulpn"
 
-# 使用 htop 替代 top
-if command -v htop >/dev/null 2>&1; then
-    alias top="htop"
-fi
-
 # =============================================================================
 # Tmux 快捷操作
 # =============================================================================
